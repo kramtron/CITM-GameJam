@@ -6,6 +6,8 @@
 #include "Window.h"
 #include "Scene_StartMenu.h"
 #include "Scene_Logo.h"
+#include "Scene_Lvl.h"
+#include "Scene.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -47,6 +49,7 @@ bool Scene_Logo::Update(float dt)
 {
 	bool ret = true;
 
+	app->render->DrawRectangle({ 100,100,10,10 }, 255, 255, 255);
 	
 
 	return ret;

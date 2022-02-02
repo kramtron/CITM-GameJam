@@ -40,6 +40,7 @@ bool Scene::Start()
 	if(app->scene_logo->active == true)
 		active = false;
 
+	active = false;
 
 	
 	return true;

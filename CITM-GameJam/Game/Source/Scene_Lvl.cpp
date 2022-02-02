@@ -27,13 +27,15 @@ bool Scene_Lvl::Awake()
 	LOG("Loading END");
 	bool ret = true;
 
+
 	return ret;
 }
 
 // Called before the first frame
 bool Scene_Lvl::Start()
 {
-	
+	active = false;
+
 	
 
 	return true;
@@ -52,10 +54,6 @@ bool Scene_Lvl::Update(float dt)
 	bool ret = true;
 
 
-
-
-	
-
 	return ret;
 }
 
@@ -63,7 +61,14 @@ bool Scene_Lvl::Update(float dt)
 bool Scene_Lvl::PostUpdate()
 {
 	bool ret = true;
-	
+	app->render->DrawRectangle({ -200,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 525,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 1250,225,550,350 }, 255, 255, 255);
+
+
+
+
+	app->render->DrawRectangle({ 50,750,250,100 }, 255, 255, 255);
 	
 
 	return ret;

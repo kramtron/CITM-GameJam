@@ -1,6 +1,10 @@
 #include "App.h"
 #include "Input.h"
 #include "Window.h"
+#include "Scene_StartMenu.h"
+#include "Scene_Logo.h"
+#include "Scene_Lvl.h"
+#include "Scene.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -133,6 +137,38 @@ bool Input::PreUpdate()
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
 		return false;
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
+		app->scene_logo->active = true;
+		app->scene_startmenu->active = false;
+		app->scene_lvl->active = false;
+		app->scene->active = false;
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
+		app->scene_logo->active = false;
+		app->scene_startmenu->active = true;
+		app->scene_lvl->active = false;
+		app->scene->active = false;
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
+	{
+		app->scene_logo->active = false;
+		app->scene_startmenu->active = false;
+		app->scene_lvl->active = true;
+		app->scene->active = false;
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
+	{
+		app->scene_logo->active = false;
+		app->scene_startmenu->active = false;
+		app->scene_lvl->active = false;
+		app->scene->active = true;
 	}
 
 
