@@ -40,10 +40,13 @@ public:
 
 	// Draw Rajoles
 	void DrawRajoles();
+	void DebugDrawRajoles();
 
 public:
 	p2List<rajola*> Rajoles;
 	SDL_Texture* trencadis = nullptr;
+	bool grabbing = false;
+	rajola* grabbedRajola = nullptr;
 };
 
 #endif // __SCENE_H__

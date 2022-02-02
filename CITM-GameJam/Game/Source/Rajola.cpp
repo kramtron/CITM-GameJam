@@ -1,7 +1,8 @@
 #include "Rajola.h"
 
 bool rajola::DetectGrab(iPoint mouse) {
-	if (mouse.x > p.x && mouse.x < (p.x + c) && mouse.y > p.y && mouse.y < (p.y + c)) {
+
+	if (mouse.x > (p.x + (WH/2) - c) && mouse.x < (p.x + (WH / 2) + c) && mouse.y >(p.y + (WH / 2) - c) && mouse.y < (p.y + (WH / 2) + c)) {
 		//Grabbed
 		grab = true;
 		grabPosition.x = mouse.x - p.x;
