@@ -34,6 +34,13 @@ public:
 
 	void DebugDraw();
 
+	struct Mouse {
+		int x, y;
+	}mouse;
+
+	int posOnClick;
+	int posMap = 0;
+
 
 private:
 

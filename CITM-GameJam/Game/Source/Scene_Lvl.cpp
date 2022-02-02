@@ -53,7 +53,32 @@ bool Scene_Lvl::Update(float dt)
 {
 	bool ret = true;
 
+	app->input->GetMousePosition(mouse.x, mouse.y);
 
+	if ((mouse.x >= 50 && mouse.x <= 300) && (mouse.y >= 750 && mouse.y <= 850))
+	{
+		if(app->input->GetMouseButtonDown(1))
+		{
+		active = false;
+		app->scene_logo->active = true;
+		}
+	}
+
+	if (mouse.y >= 175 && mouse.y <= 625)
+	{
+		/*
+		* on click guarda pos, pos guardada menys pos actual
+		*/
+		if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+		{
+			posOnClick = mouse.x;
+		}
+
+		if (app->input->GetMouseButtonDown(1) == KEY_REPEAT)
+		{
+			posMap = mouse.x - posOnClick;
+		}
+	}
 	return ret;
 }
 
@@ -61,9 +86,9 @@ bool Scene_Lvl::Update(float dt)
 bool Scene_Lvl::PostUpdate()
 {
 	bool ret = true;
-	app->render->DrawRectangle({ -200,225,550,350 }, 255, 255, 255);
-	app->render->DrawRectangle({ 525,225,550,350 }, 255, 255, 255);
-	app->render->DrawRectangle({ 1250,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ -200 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 525 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 1250 + posMap,225,550,350 }, 255, 255, 255);
 
 
 
