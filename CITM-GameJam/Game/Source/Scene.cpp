@@ -124,7 +124,8 @@ bool Scene::CleanUp()
 
 void Scene::CreateRajola(iPoint p)
 {
-	srand(time(NULL) * 1000);
+	srand(time(NULL));
+
 	float f = rand() % 5 + 8;
 	iPoint i = iPoint(rand() % 30 * 125, rand() % 24 * 125);	//SPRITE RAJOLES -> 30 per fila, 24 per columna, widht/height = 125
 	rajola* r = new rajola(p, i, rand() % 360, (f / 10.0f));
