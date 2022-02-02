@@ -42,6 +42,8 @@ public:
 
 	struct Mouse{
 		int x, y;
+		int left = 1;
+		int right = 3;
 	}mouse;
 	float distance;
 	bool destroyCircle = false;
