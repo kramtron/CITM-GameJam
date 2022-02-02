@@ -1,18 +1,18 @@
-#ifndef __SCENE_INTRO_H__
-#define __SCENE_INTRO_H__
+#ifndef __SCENE_STARTMENU_H__
+#define __SCENE_STARTMENU_H__
 
 #include "Module.h"
 
 struct SDL_Texture;
 
-class Scene_Intro : public Module
+class Scene_StartMenu : public Module
 {
 public:
 
-	Scene_Intro();
+	Scene_StartMenu();
 
 	// Destructor
-	virtual ~Scene_Intro();
+	virtual ~Scene_StartMenu();
 
 	// Called before render is available
 	bool Awake();
@@ -50,4 +50,4 @@ private:
 };
 
 
-#endif // __SCENE_INTRO_H__
+#endif // __SCENE_STARTMENU_H__

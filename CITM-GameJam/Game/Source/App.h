@@ -16,13 +16,10 @@ class Render;
 class Textures;
 class Audio;
 class Scene_Logo;
-class Scene_Intro;
-class ModuleEnemy;
-class ModuleScore;
+class Scene_StartMenu;
 class Scene;
-class Scene_END;
+class Scene_Lvl;
 class Scene_Win;
-class Map;
 
 class App
 {
@@ -98,13 +95,10 @@ public:
 	Textures* tex;
 	Audio* audio;
 	Scene_Logo* scene_logo;
-	ModuleEnemy* moduleEnemy;
-	ModuleScore* modulescore;
-	Scene_Intro* scene_intro;
+	Scene_StartMenu* scene_startmenu;
 	Scene* scene;
-	Scene_END* scene_end;
+	Scene_Lvl* scene_lvl;
 	Scene_Win* scene_win;
-	Map* map;
 
 	bool pause = false;
 

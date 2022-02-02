@@ -4,26 +4,25 @@
 #include "Audio.h"
 #include "Render.h"
 #include "Window.h"
-#include "Scene_Intro.h"
+#include "Scene_StartMenu.h"
 #include "Scene_Logo.h"
-#include "Scene_END.h"
+#include "Scene_Lvl.h"
 #include "Scene.h"
-#include "Map.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-Scene_END::Scene_END() : Module()
+Scene_Lvl::Scene_Lvl() : Module()
 {
-	name.Create("scene_end");
+	name.Create("scene_lvl");
 }
 
 // Destructor
-Scene_END::~Scene_END()
+Scene_Lvl::~Scene_Lvl()
 {}
 
 // Called before render is available
-bool Scene_END::Awake()
+bool Scene_Lvl::Awake()
 {
 	LOG("Loading END");
 	bool ret = true;
@@ -32,7 +31,7 @@ bool Scene_END::Awake()
 }
 
 // Called before the first frame
-bool Scene_END::Start()
+bool Scene_Lvl::Start()
 {
 	
 	
@@ -41,14 +40,14 @@ bool Scene_END::Start()
 }
 
 // Called each loop iteration
-bool Scene_END::PreUpdate()
+bool Scene_Lvl::PreUpdate()
 {
 	return true;
 
 }
 
 // Called each loop iteration
-bool Scene_END::Update(float dt)
+bool Scene_Lvl::Update(float dt)
 {
 	bool ret = true;
 
@@ -61,7 +60,7 @@ bool Scene_END::Update(float dt)
 }
 
 // Called each loop iteration
-bool Scene_END::PostUpdate()
+bool Scene_Lvl::PostUpdate()
 {
 	bool ret = true;
 	
@@ -71,7 +70,7 @@ bool Scene_END::PostUpdate()
 }
 
 // Called before quitting
-bool Scene_END::CleanUp()
+bool Scene_Lvl::CleanUp()
 {
 	
 
@@ -79,7 +78,7 @@ bool Scene_END::CleanUp()
 }
 
 
-void Scene_END::DebugDraw()
+void Scene_Lvl::DebugDraw()
 {
 
 }

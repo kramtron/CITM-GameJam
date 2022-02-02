@@ -1,18 +1,18 @@
-#ifndef __SCENE_END_H__
-#define __SCENE_END_H__
+#ifndef __SCENE_LVL_H__
+#define __SCENE_LVL_H__
 
 #include "Module.h"
 
 struct SDL_Texture;
 
-class Scene_END : public Module
+class Scene_Lvl : public Module
 {
 public:
 
-	Scene_END();
+	Scene_Lvl();
 
 	// Destructor
-	virtual ~Scene_END();
+	virtual ~Scene_Lvl();
 
 	// Called before render is available
 	bool Awake();
@@ -42,4 +42,4 @@ private:
 };
 
 
-#endif // __SCENE_END_H__
+#endif // __SCENE_LVL_H__

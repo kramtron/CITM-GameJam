@@ -5,14 +5,11 @@
 #include "Render.h"
 #include "Window.h"
 #include "Scene.h"
-#include "Scene_Intro.h"
+#include "Scene_StartMenu.h"
 #include "Scene_Logo.h"
-#include "Scene_END.h"
+#include "Scene_Lvl.h"
 #include "Scene_Win.h"
-#include "Map.h"
 #include "Animation.h"
-#include "ModuleEnemy.h"
-#include "ModuleScore.h"
 
 
 #include "Defs.h"

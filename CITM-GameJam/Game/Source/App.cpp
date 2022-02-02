@@ -5,13 +5,10 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Scene.h"
-#include "Scene_Intro.h"
+#include "Scene_StartMenu.h"
 #include "Scene_Logo.h"
-#include "ModuleEnemy.h"
-#include "ModuleScore.h"
-#include "Scene_END.h"
+#include "Scene_Lvl.h"
 #include "Scene_Win.h"
-#include "Map.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -30,13 +27,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	tex = new Textures();
 	audio = new Audio();
 	scene_logo = new Scene_Logo();
-	moduleEnemy = new ModuleEnemy();
-	modulescore = new ModuleScore();
-	scene_intro = new Scene_Intro();
+	scene_startmenu = new Scene_StartMenu();
 	scene = new Scene();
-	scene_end = new Scene_END();
+	scene_lvl = new Scene_Lvl();
 	scene_win = new Scene_Win();
-	map = new Map();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -45,13 +39,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(scene_logo);
-	AddModule(scene_intro);
-	AddModule(moduleEnemy);
-	AddModule(modulescore);
+	AddModule(scene_startmenu);
 	AddModule(scene);
-	AddModule(scene_end);
+	AddModule(scene_lvl);
 	AddModule(scene_win);
-	AddModule(map);
 
 	// Render last to swap buffer
 	AddModule(render);

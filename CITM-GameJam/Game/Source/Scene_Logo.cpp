@@ -4,9 +4,8 @@
 #include "Audio.h"
 #include "Render.h"
 #include "Window.h"
-#include "Scene_Intro.h"
+#include "Scene_StartMenu.h"
 #include "Scene_Logo.h"
-#include "Map.h"
 
 #include "Defs.h"
 #include "Log.h"

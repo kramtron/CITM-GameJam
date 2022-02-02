@@ -4,24 +4,23 @@
 #include "Audio.h"
 #include "Render.h"
 #include "Window.h"
-#include "Scene_Intro.h"
+#include "Scene_StartMenu.h"
 #include "Scene.h"
-#include "Map.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-Scene_Intro::Scene_Intro() : Module()
+Scene_StartMenu::Scene_StartMenu() : Module()
 {
-	name.Create("scene_intro");
+	name.Create("scene_startmenu");
 }
 
 // Destructor
-Scene_Intro::~Scene_Intro()
+Scene_StartMenu::~Scene_StartMenu()
 {}
 
 // Called before render is available
-bool Scene_Intro::Awake()
+bool Scene_StartMenu::Awake()
 {
 	LOG("Loading Scene");
 	bool ret = true;
@@ -30,7 +29,7 @@ bool Scene_Intro::Awake()
 }
 
 // Called before the first frame
-bool Scene_Intro::Start()
+bool Scene_StartMenu::Start()
 {
 
 
@@ -39,7 +38,7 @@ bool Scene_Intro::Start()
 }
 
 // Called each loop iteration
-bool Scene_Intro::PreUpdate()
+bool Scene_StartMenu::PreUpdate()
 {
 
 
@@ -48,7 +47,7 @@ bool Scene_Intro::PreUpdate()
 }
 
 // Called each loop iteration
-bool Scene_Intro::Update(float dt)
+bool Scene_StartMenu::Update(float dt)
 {
 	bool ret = true;
 
@@ -57,7 +56,7 @@ bool Scene_Intro::Update(float dt)
 }
 
 // Called each loop iteration
-bool Scene_Intro::PostUpdate()
+bool Scene_StartMenu::PostUpdate()
 {
 	bool ret = true;
 
@@ -67,7 +66,7 @@ bool Scene_Intro::PostUpdate()
 }
 
 // Called before quitting
-bool Scene_Intro::CleanUp()
+bool Scene_StartMenu::CleanUp()
 {
 	LOG("Freeing scene");
 
@@ -75,17 +74,17 @@ bool Scene_Intro::CleanUp()
 }
 
 
-void Scene_Intro::DebugDraw()
+void Scene_StartMenu::DebugDraw()
 {
 	
 }
-bool Scene_Intro::LoadGameConfig(pugi::xml_node& configAudio, pugi::xml_node& configScreen, pugi::xml_node& configVsync) {
+bool Scene_StartMenu::LoadGameConfig(pugi::xml_node& configAudio, pugi::xml_node& configScreen, pugi::xml_node& configVsync) {
 
 
 	return true;
 }
 
-bool Scene_Intro::SaveGameConfig(pugi::xml_node& configAudio, pugi::xml_node& configScreen, pugi::xml_node& configVsync) const{
+bool Scene_StartMenu::SaveGameConfig(pugi::xml_node& configAudio, pugi::xml_node& configScreen, pugi::xml_node& configVsync) const{
 
 
 
