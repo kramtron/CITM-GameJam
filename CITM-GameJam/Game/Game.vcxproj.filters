@@ -19,6 +19,7 @@
     <ClCompile Include="Source\Scene_Win.cpp" />
     <ClCompile Include="Source\Scene_StartMenu.cpp" />
     <ClCompile Include="Source\Scene_Lvl.cpp" />
+    <ClCompile Include="Source\Rajola.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -64,6 +65,7 @@
     <ClInclude Include="Source\Scene_Win.h" />
     <ClInclude Include="Source\Scene_StartMenu.h" />
     <ClInclude Include="Source\Scene_Lvl.h" />
+    <ClInclude Include="Source\Rajola.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

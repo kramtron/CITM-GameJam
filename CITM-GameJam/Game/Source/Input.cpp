@@ -132,7 +132,7 @@ bool Input::PreUpdate()
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
-		app->pause = !app->pause;
+		return false;
 	}
 
 

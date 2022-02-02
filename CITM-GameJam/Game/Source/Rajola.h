@@ -3,4 +3,8 @@
 
 #include "App.h"
 
+class rajola {
+
+};
+
 #endif

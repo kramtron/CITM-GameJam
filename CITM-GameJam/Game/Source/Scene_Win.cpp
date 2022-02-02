@@ -58,6 +58,11 @@ bool Scene_Win::Update(float dt)
 	return ret;
 }
 
+bool Scene_Win::PostUpdate()
+{
+	return true;
+}
+
 // Called before quitting
 bool Scene_Win::CleanUp()
 {
