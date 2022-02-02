@@ -68,7 +68,10 @@ bool Scene_Lvl::Update(float dt)
 	{
 		/*
 		* on click guarda pos, pos guardada menys pos actual
-		*/
+		*/if (app->input->GetMouseButtonDown(1))
+		{
+			
+		}
 		if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
 		{
 			posOnClick = mouse.x;
@@ -77,6 +80,11 @@ bool Scene_Lvl::Update(float dt)
 		if (app->input->GetMouseButtonDown(1) == KEY_REPEAT)
 		{
 			posMap = mouse.x - posOnClick;
+
+		}
+		if (app->input->GetMouseButtonDown(1) == KEY_UP) {
+			goodPosMap = posMap;
+			posMap = goodPosMap;
 		}
 	}
 	return ret;

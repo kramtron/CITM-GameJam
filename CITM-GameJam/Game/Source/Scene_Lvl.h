@@ -39,8 +39,8 @@ public:
 	}mouse;
 
 	int posOnClick;
-	int posMap = 0;
-
+	int posMap;
+	int goodPosMap;
 
 private:
 
