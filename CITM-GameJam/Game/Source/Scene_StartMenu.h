@@ -40,10 +40,14 @@ public:
 
 	bool loadPreConfig = true;
 
-
-
+	struct Mouse{
+		int x, y;
+	}mouse;
+	float distance;
+	bool destroyCircle = false;
 private:
 
+	
 
 };
 
