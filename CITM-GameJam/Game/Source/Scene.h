@@ -3,6 +3,8 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "Rajola.h"
+#include "p2List.h"
 
 struct SDL_Texture;
 
@@ -33,10 +35,15 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void DebugDraw();
+	// Create random rajola in coords
+	void CreateRajola(iPoint p);
 
-private:
-	
+	// Draw Rajoles
+	void DrawRajoles();
+
+public:
+	p2List<rajola*> Rajoles;
+	SDL_Texture* trencadis = nullptr;
 };
 
 #endif // __SCENE_H__

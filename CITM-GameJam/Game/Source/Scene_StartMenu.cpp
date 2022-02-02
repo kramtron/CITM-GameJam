@@ -32,7 +32,7 @@ bool Scene_StartMenu::Awake()
 // Called before the first frame
 bool Scene_StartMenu::Start()
 {
-
+	active = false;
 
 	return true;
 }
@@ -51,20 +51,30 @@ bool Scene_StartMenu::Update(float dt)
 {
 	bool ret = true;
 	app->input->GetMousePosition(mouse.x, mouse.y);
-	app->render->DrawCircle(800,450,400,255, 0, 0);
+	if (destroyCircle == false) {
+		app->render->DrawCircle(800, 450, 400, 255, 0, 0);
+	}
 	//Vector para ver si el mouse está dentro del circulo
 	iPoint vector = iPoint((mouse.x - 800), (mouse.y - 450));
 	//Calcula la distancia del vector
 	distance = (vector.x * vector.x) + (vector.y * vector.y);
 	//En caso de estar dentro de la distancia del circulo activa el if
-	if(400*400>distance){
+	if(400*400>distance&&destroyCircle==false){
 		//Cuando pulsas el boton izquierdo destruyes el circulo
-		if (app->input->GetMouseButtonDown(1)) {
-			app->render->DrawCircle(800, 450, 400, 255, 255, 0);
+		if (app->input->GetMouseButtonDown(mouse.left)) {
+			//Aqui va la activacion de la animación de como se destruye el trencadis
 			destroyCircle = true;
 		}
 
 	}
+	if (destroyCircle) {
+		//Aquí va la animación de la destruccion del trencadis
+
+
+	}
+	//Se necesita un if que active el menu cuando un bool que te indique que la animación esté terminada esté en true
+	//A partir de ese punto se activa el menu
+
 	LOG("mouse x: %d,  mouse y: %d", mouse.x, mouse.y);
 	return ret;
 }
