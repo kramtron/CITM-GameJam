@@ -2,51 +2,32 @@
 #define __RAJOLA_H__
 
 #include "App.h"
-
-class fpoint {
-public:
-	float x;
-	float y;
-public:
-	fpoint() {
-		x = 0.0f;
-		y = 0.0f;
-	}
-	fpoint(float x, float y) {
-		this->x = x;
-		this->y = y;
-	}
-};
-
-class ipoint {
-public:
-	int x = 0;
-	int y = 0;
-public:
-	ipoint() {
-		x = 0;
-		y = 0;
-	}
-	ipoint(int x, int y) {
-		this->x = x;
-		this->y = y;
-	}
-};
+#include "Render.h"
+#include "Point.h"
 
 class rajola {
 public:
-	rajola(fpoint screenPosition, ipoint spritePosition) {
+	rajola(fPoint screenPosition, iPoint spritePosition, float angle = 0.0f, float scale = 0.0f) {
 		p = screenPosition;
 		sp = spritePosition;
+		a = angle;
+		s = scale;
 		grab = false;
+		grabPosition = fPoint(0, 0);
+		c = 30.0f * scale;	//30 = normal width height
 	}
 
-	bool DetectGrab();
-	bool Draw();
+	bool DetectGrab(iPoint mouse);	//if it collides, grab = true, and returns true
 
+	void setGrab(bool b);
+	bool Grabbed();
 private:
-	fpoint p;	//screen position
-	ipoint sp;	//sprite position
+	fPoint p;	//screen position
+	iPoint sp;	//sprite position
+	float a;	//angle
+	float s;	//scale
 	bool grab;
+	fPoint grabPosition;	//The coordinates in which the object is grabbed
+	float c;	//collider width and height
 };
 #endif
