@@ -78,15 +78,3 @@ void Scene_StartMenu::DebugDraw()
 {
 	
 }
-bool Scene_StartMenu::LoadGameConfig(pugi::xml_node& configAudio, pugi::xml_node& configScreen, pugi::xml_node& configVsync) {
-
-
-	return true;
-}
-
-bool Scene_StartMenu::SaveGameConfig(pugi::xml_node& configAudio, pugi::xml_node& configScreen, pugi::xml_node& configVsync) const{
-
-
-
-	return true;
-}

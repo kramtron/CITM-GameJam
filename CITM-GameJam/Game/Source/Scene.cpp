@@ -79,39 +79,7 @@ bool Scene::CleanUp()
 	return true;
 }
 
-//Carga la posicion del personaje NO SE USA EN ESTE CODIGO
-bool Scene::LoadState(pugi::xml_node& configRenderer)
-{
 
-
-	return true;
-}
-
-bool Scene::LoadPlayerData(pugi::xml_node& playerData) {
-
-
-
-	return true;
-}
-bool Scene::LoadScene1Data(pugi::xml_node& scene1Data) {
-
-
-
-	return true;
-}
-//Guarda la posicion del personaje NO SE USA EN ESTE CODIGO
-bool Scene::SaveState(pugi::xml_node& playerData) const
-{
-	
-
-	return true;
-}
-bool Scene::SaveScene1State(pugi::xml_node& scene1Data) const {
-
-	
-
-	return true;
-}
 //Dibuja los colliders
 void Scene::DebugDraw()
 {

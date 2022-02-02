@@ -35,23 +35,6 @@ public:
 
 	void DebugDraw();
 
-	void DrawDecorations();
-
-	void ObeliskMenuController();
-	
-	
-
-	bool SaveState(pugi::xml_node&) const;
-	bool SaveScene1State(pugi::xml_node&) const;
-
-	
-
-
-	//Number, digit number, position X, position Y, number separation, scale.
-	void FontDraw(int score, int n, int posX, int posY, int separacio, float scale);
-
-
-
 private:
 	
 };
