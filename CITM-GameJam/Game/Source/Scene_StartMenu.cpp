@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "Scene_StartMenu.h"
 #include "Scene.h"
+#include "Rajola.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -33,7 +34,6 @@ bool Scene_StartMenu::Start()
 {
 
 
-
 	return true;
 }
 
@@ -50,8 +50,22 @@ bool Scene_StartMenu::PreUpdate()
 bool Scene_StartMenu::Update(float dt)
 {
 	bool ret = true;
+	app->input->GetMousePosition(mouse.x, mouse.y);
+	app->render->DrawCircle(800,450,400,255, 0, 0);
+	//Vector para ver si el mouse está dentro del circulo
+	iPoint vector = iPoint((mouse.x - 800), (mouse.y - 450));
+	//Calcula la distancia del vector
+	distance = (vector.x * vector.x) + (vector.y * vector.y);
+	//En caso de estar dentro de la distancia del circulo activa el if
+	if(400*400>distance){
+		//Cuando pulsas el boton izquierdo destruyes el circulo
+		if (app->input->GetMouseButtonDown(1)) {
+			app->render->DrawCircle(800, 450, 400, 255, 255, 0);
+			destroyCircle = true;
+		}
 
-
+	}
+	LOG("mouse x: %d,  mouse y: %d", mouse.x, mouse.y);
 	return ret;
 }
 
