@@ -45,7 +45,7 @@ bool Scene::Start()
 	trencadis = app->tex->Load("Assets/trencadis.png");
 	brillibrilli = app->tex->Load("Assets/brillitu.png");
 	
-	for (int i = 0; i < 128; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		for (int j = 0; j < 9; ++j) {
 			CreateRajola(iPoint(100*i, 100*j));
 		}
@@ -57,8 +57,6 @@ bool Scene::Start()
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
-
-
 	return true;
 }
 
@@ -122,7 +120,7 @@ bool Scene::Update(float dt)
 // Called each loop iteration
 bool Scene::PostUpdate()
 {
-	bool ret = true;
+	//bool ret = true;
 
 	//Draw all present Rajoles
 	DrawRajoles();
@@ -135,7 +133,7 @@ bool Scene::PostUpdate()
 	if (debug) 
 		DebugDrawRajoles();
 	
-	return ret;
+	return true;
 }
 
 // Called before quitting
@@ -170,6 +168,7 @@ void Scene::DrawRajoles() {
 		SDL_Rect* rect = new SDL_Rect { currentRajola->data->sp.x, currentRajola->data->sp.y, WH, WH}; //Rajola w/h = 125
 		app->render->DrawTexture(trencadis, currentRajola->data->p.x, currentRajola->data->p.y,
 								rect, 1.0f, currentRajola->data->s, currentRajola->data->a);
+		delete rect;
 	}
 }
 
@@ -185,7 +184,6 @@ void Scene::DebugDrawRajoles() {
 }
 
 int Scene::ReRandomize() {
-	//srand(chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now() - app->Timer).count());
-	srand(time(NULL));
+	srand(chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now() - app->Timer).count());
 	return rand();
 }
