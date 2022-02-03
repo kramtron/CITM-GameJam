@@ -36,7 +36,8 @@ bool Scene_Lvl::Start()
 {
 	active = false;
 
-	
+	butt1 = new Button(50, 750, 250, 100);
+	butt2 = new Button(1300, 750, 250, 100);
 
 	return true;
 }
@@ -54,13 +55,23 @@ bool Scene_Lvl::Update(float dt)
 	bool ret = true;
 
 	app->input->GetMousePosition(mouse.x, mouse.y);
-
-	if ((mouse.x >= 50 && mouse.x <= 300) && (mouse.y >= 750 && mouse.y <= 850))
+	
+	if (butt2->DetectColision())
 	{
-		if(app->input->GetMouseButtonDown(1))
+		if (app->input->GetMouseButtonDown(1))
 		{
-		active = false;
-		app->scene_logo->active = true;
+
+			active = false;
+			app->scene->active = true;
+		}
+	}	
+	
+	if (butt1->DetectColision())
+	{
+		if (app->input->GetMouseButtonDown(1))
+		{
+			active = false;
+			app->scene_logo->active = true;
 		}
 	}
 
@@ -119,10 +130,6 @@ bool Scene_Lvl::Update(float dt)
 		selectMap = 13;
 	else if (posMap >= 4500)
 		selectMap = 14;
-
-
-	LOG("Mapa Selected %d", selectMap);
-	
 
 	return ret;
 }
