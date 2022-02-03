@@ -107,6 +107,8 @@ bool App::Awake()
 		}
 	}
 
+	Timer = chrono::steady_clock::now();
+
 	return ret;
 }
 

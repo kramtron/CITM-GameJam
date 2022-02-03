@@ -6,8 +6,9 @@
 #include "Rajola.h"
 #include "p2List.h"
 #include <chrono>
+using namespace std;
 
-#define MOUSE_WHEEL_SENSITIVITY 10
+#define MOUSE_WHEEL_SENSITIVITY 5
 
 using namespace std;
 
@@ -48,11 +49,15 @@ public:
 	void DrawRajoles();
 	void DebugDrawRajoles();
 
+	//Randomise
+	int ReRandomize();
 public:
 	p2List<rajola*> Rajoles;
 	SDL_Texture* trencadis = nullptr;
 	bool grabbing = false;
 	rajola* grabbedRajola = nullptr;
+
+	bool debug = false;
 };
 
 #endif // __SCENE_H__

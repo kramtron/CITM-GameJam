@@ -65,6 +65,9 @@ bool Scene::Update(float dt)
 {
 	bool ret = true;
 	
+	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		debug = !debug;
+
 	//Grabbing Rajola
 	if (grabbing) {
 
@@ -88,8 +91,8 @@ bool Scene::Update(float dt)
 			app->input->GetMousePosition(mp.x, mp.y);
 			for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); (currentRajola != nullptr) && (!grabbing); currentRajola = currentRajola->next) {
 				if (currentRajola->data->DetectGrab(mp)) {
-					currentRajola->data->grabPosition = iPoint(mp.x - currentRajola->data->p.x, mp.y - currentRajola->data->p.y);
 					grabbedRajola = currentRajola->data;
+					grabbedRajola->setGrab(true);
 					grabbing = true;
 				}
 			}
@@ -109,7 +112,8 @@ bool Scene::PostUpdate()
 	DrawRajoles();
 
 	//Debug draw
-	DebugDrawRajoles();
+	if (debug) 
+		DebugDrawRajoles();
 	
 	return ret;
 }
@@ -126,19 +130,19 @@ bool Scene::CleanUp()
 
 void Scene::CreateRajola(iPoint p)
 {
-	srand(time(NULL));
-	
-	float f = rand() % 5 + 8;	//Random SCALE between .8 and 1.2
-	int raj = rand() % (FilesRaj * ColumnesRaj);	//SPRITE RAJOLES -> 30 per fila, 24 per columna
+	float f = ReRandomize() % 5 + 8;	//Random SCALE between .8 and 1.2
+
+	int raj = ReRandomize() % (FilesRaj * ColumnesRaj);	//SPRITE RAJOLES -> 30 per fila, 24 per columna
 	iPoint i = iPoint((raj / FilesRaj) * WH, (raj % FilesRaj) * WH);
-	rajola* r = new rajola(p, i, rand() % 360, (f / 10.0f));
+
+	rajola* r = new rajola(p, i, ReRandomize() % 360, (f / 10.0f));
 	Rajoles.add(r);
 }
 
 void Scene::DrawRajoles() {
 	for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); currentRajola != nullptr; currentRajola = currentRajola->next) {
 		SDL_Rect* rect = new SDL_Rect { currentRajola->data->sp.x, currentRajola->data->sp.x, WH, WH}; //Rajola w/h = 125
-		app->render->DrawTexture(trencadis, currentRajola->data->p.x, currentRajola->data->p.y, rect, 1.0f, currentRajola->data->s,
+		app->render->DrawTexture(trencadis, currentRajola->data->p.x, currentRajola->data->p.y, rect, 1.0f, /*currentRajola->data->s*/1,
 			currentRajola->data->a);//, WH / 2, WH / 2);
 	}
 }
@@ -152,4 +156,9 @@ void Scene::DebugDrawRajoles() {
 		app->render->DrawRectangle(rect, 255, 0, 0, 100);
 		app->render->DrawCircle(currentRajola->data->p.x + WH/2, currentRajola->data->p.y + WH/2, 1, 0, 0, 255);
 	}
+}
+
+int Scene::ReRandomize() {
+	srand(chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now() - app->Timer).count());
+	return rand();
 }
