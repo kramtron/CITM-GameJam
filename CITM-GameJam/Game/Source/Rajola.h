@@ -6,9 +6,10 @@
 #include "Point.h"
 
 #define WH 125
-#define CWH 30.0f
+#define CWH 40.0f
 #define FilesRaj 30
 #define ColumnesRaj 24
+#define RajolaGlobalScale 1.0f
 
 class rajola {
 public:
@@ -16,10 +17,10 @@ public:
 		p = screenPosition;
 		sp = spritePosition;
 		a = angle;
-		s = scale;
+		s = scale * RajolaGlobalScale;
 		grab = false;
 		grabPosition = iPoint(0, 0);
-		c = CWH * scale;	//30 = normal width height
+		c = CWH * scale * RajolaGlobalScale;	//30 = normal width height
 	}
 
 	bool DetectGrab(iPoint mouse);	//if it collides, grab = true, and returns true

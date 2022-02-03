@@ -142,19 +142,19 @@ void Scene::CreateRajola(iPoint p)
 void Scene::DrawRajoles() {
 	for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); currentRajola != nullptr; currentRajola = currentRajola->next) {
 		SDL_Rect* rect = new SDL_Rect { currentRajola->data->sp.x, currentRajola->data->sp.x, WH, WH}; //Rajola w/h = 125
-		app->render->DrawTexture(trencadis, currentRajola->data->p.x, currentRajola->data->p.y, rect, 1.0f, /*currentRajola->data->s*/1,
-			currentRajola->data->a);//, WH / 2, WH / 2);
+		app->render->DrawTexture(trencadis, currentRajola->data->p.x, currentRajola->data->p.y,
+								rect, 1.0f, currentRajola->data->s, currentRajola->data->a);//, WH / 2, WH / 2);
 	}
 }
 
 void Scene::DebugDrawRajoles() {
 	//COLLIDERS
 	for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); (currentRajola != nullptr) && (!grabbing); currentRajola = currentRajola->next) {
-		SDL_Rect rect = { currentRajola->data->p.x + (WH / 2) - currentRajola->data->c,
-							currentRajola->data->p.y + (WH / 2) - currentRajola->data->c,
+		SDL_Rect rect = { currentRajola->data->p.x + (WH / 2 * currentRajola->data->s) - currentRajola->data->c,
+							currentRajola->data->p.y + (WH / 2 * currentRajola->data->s) - currentRajola->data->c,
 							currentRajola->data->c*2, currentRajola->data->c*2 };
 		app->render->DrawRectangle(rect, 255, 0, 0, 100);
-		app->render->DrawCircle(currentRajola->data->p.x + WH/2, currentRajola->data->p.y + WH/2, 1, 0, 0, 255);
+		app->render->DrawCircle(currentRajola->data->p.x + WH/2 * currentRajola->data->s, currentRajola->data->p.y + WH/2 * currentRajola->data->s, 2, 0, 0, 255);
 	}
 }
 
