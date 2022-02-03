@@ -50,5 +50,26 @@ private:
 
 };
 
+class Button {
+public:
+	SDL_Rect r;
+
+	Button(SDL_Rect r) {
+		this->r = r;
+	}
+
+	Button(int x, int y, int w, int h) {
+		r.x = x;
+		r.y = y;
+		r.w = w;
+		r.h = h;
+	}
+
+	bool DetectColision() {
+		iPoint m;
+		app->input->GetMousePosition(m.x, m.y);
+		return (m.x > r.x && m.x < (r.x + r.w) && m.y > r.y && m.y < (r.y + r.h));
+	}
+};
 
 #endif // __SCENE_LVL_H__
