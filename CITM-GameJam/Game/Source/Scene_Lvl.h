@@ -52,23 +52,21 @@ private:
 
 class Button {
 public:
-	SDL_Rect r;
+	int x, y, w, h;
 
-	Button(SDL_Rect r) {
-		this->r = r;
-	}
+	Button() {}
 
 	Button(int x, int y, int w, int h) {
-		r.x = x;
-		r.y = y;
-		r.w = w;
-		r.h = h;
+		this->x = x;
+		this->y = y;
+		this->w = w;
+		this->h = h;
 	}
 
 	bool DetectColision() {
-		iPoint m;
-		app->input->GetMousePosition(m.x, m.y);
-		return (m.x > r.x && m.x < (r.x + r.w) && m.y > r.y && m.y < (r.y + r.h));
+		int mx, my;
+		app->input->GetMousePosition(mx, my);
+		return (mx > x && mx < (x + w) && my > y && my < (y + h));
 	}
 };
 
