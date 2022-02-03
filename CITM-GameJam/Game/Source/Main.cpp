@@ -93,7 +93,7 @@ int main(int argc, char* args[])
 			// Loop all modules until we are asked to leave ---------------------
 			case LOOP:
 			app->SetDt((float)telapsed/(float)DELTA_TIME);
-			LOG("DtMain: %.4f", (float)telapsed / (float)DELTA_TIME);
+			//LOG("DtMain: %.4f", (float)telapsed / (float)DELTA_TIME);
 			if(app->Update() == false)
 				state = CLEAN;
 	
@@ -131,7 +131,7 @@ int main(int argc, char* args[])
 		//TOC
 		auto end = chrono::steady_clock::now();
 		//Check en salida de la diferencia de temps
-		LOG("Elapsed time in milliseconds: %d", chrono::duration_cast<chrono::milliseconds>(end - start).count(), " ms");
+		//LOG("Elapsed time in milliseconds: %d", chrono::duration_cast<chrono::milliseconds>(end - start).count(), " ms");
 		telapsed = chrono::duration_cast<chrono::milliseconds>(end - start).count();
  		LOG("dt: %f", delta_time);
 		//Entra si hay diferencia de tiempo
@@ -140,12 +140,12 @@ int main(int argc, char* args[])
 			SDL_Delay((delta_time - telapsed)/1000);
 			//telapsed = delta_time / 2.5f;
 		}
-		LOG("ALGO QUE NO FUNCIONA: %.4f", (telapsed / delta_time));
+		//LOG("ALGO QUE NO FUNCIONA: %.4f", (telapsed / delta_time));
 
 	}
 
 	
-	LOG("... Bye! :)\n");
+	//LOG("... Bye! :)\n");
 
 	// Dump memory leaks
 	return result;

@@ -88,40 +88,41 @@ bool Scene_Lvl::Update(float dt)
 		}
 	}
 
-	/*
-	if (posMap < -4550)
+	
+	if (posMap <= -5075)
 		selectMap = 0;
-	else if (posMap <= -3850 && posMap >= 3250)
+	else if (posMap >= -4900 && posMap <= -4350)
 		selectMap = 1;
-	else if (posMap <= -3125 && posMap >= -2525)
+	else if (posMap >= -4180 && posMap <= -3630)
 		selectMap = 2;
-	else if (posMap <= -2400 && posMap >= -1800)
+	else if (posMap >= -3455 && posMap <= -2900)
 		selectMap = 3;
-	else if (posMap <= -1675 && posMap >= -1075)
+	else if (posMap >= -2730 && posMap <= -2175)
 		selectMap = 4;
-	else if (posMap <= -950 && posMap >= -350)
+	else if (posMap >= -2000 && posMap <= -1450)
 		selectMap = 5;
-	else if (posMap <= -225 && posMap >= 375)
+	else if (posMap >= -1280 && posMap <= -725)
 		selectMap = 6;
-	else if (posMap <= 500 && posMap >= 1100)
+	else if (posMap >= -555 && posMap <= 0)
 		selectMap = 7;
-	else if (posMap <= 1225 && posMap >= 1825)
+	else if (posMap >= 170 && posMap <= 725)
 		selectMap = 8;
-	else if (posMap <= 1950 && posMap >= 2550)
+	else if (posMap >= 900 && posMap <= 1450)
 		selectMap = 9;
-	else if (posMap <= 2675 && posMap >= 3275)
+	else if (posMap >= 1625 && posMap <= 2175)
 		selectMap = 10;
-	else if (posMap <= 3400 && posMap >= 4000)
+	else if (posMap >= 2345 && posMap <= 2890)
 		selectMap = 11;
-	else if (posMap <= 4125 && posMap >= 4725)
+	else if (posMap >= 3070 && posMap <= 3625)
 		selectMap = 12;
-	else if (posMap <= 4850 && posMap >= 5450)
+	else if (posMap >= 3790 && posMap <= 4345)
 		selectMap = 13;
-	else if (posMap > 5600)
+	else if (posMap >= 4500)
 		selectMap = 14;
 
+
 	LOG("Mapa Selected %d", selectMap);
-	*/
+	
 
 	return ret;
 }
