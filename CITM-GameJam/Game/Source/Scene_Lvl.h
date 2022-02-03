@@ -5,31 +5,6 @@
 
 struct SDL_Texture;
 
-class Button {
-public:
-	int x, y, w, h;
-
-	Button() {
-		x = y = w = h = 0;
-	}
-
-	Button(int x, int y, int w, int h) {
-		this->x = x;
-		this->y = y;
-		this->w = w;
-		this->h = h;
-	}
-
-public:
-	bool DetectColision() {
-		int mx, my;
-		app->input->GetMousePosition(mx, my);
-		return (mx > x && mx < (x + w) && my > y && my < (y + h));
-	}
-
-};
-
-
 class Scene_Lvl : public Module
 {
 public:

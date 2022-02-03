@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "Scene_StartMenu.h"
 #include "Scene.h"
+#include "Scene_Lvl.h"
 #include "Rajola.h"
 
 #include "Defs.h"
@@ -33,6 +34,12 @@ bool Scene_StartMenu::Awake()
 bool Scene_StartMenu::Start()
 {
 	active = false;
+
+	playMode1 = new Button(255, 255, 275, 100);
+	playMode2 = new Button(625, 255, 275, 100);
+	options = new Button(1000, 255, 275, 100);
+	exit = new Button(425, 500, 275, 100);
+	credits = new Button(800, 500, 275, 100);
 
 	return true;
 }
@@ -70,10 +77,52 @@ bool Scene_StartMenu::Update(float dt)
 	if (destroyCircle) {
 		//Aquí va la animación de la destruccion del trencadis
 
-
+		//quan acabi l'animació s'activa el menu
+		endAnimation = true;
 	}
 	//Se necesita un if que active el menu cuando un bool que te indique que la animación esté terminada esté en true
 	//A partir de ese punto se activa el menu
+	if (endAnimation == true)
+	{
+		if (playMode1->DetectColision())
+		{
+			if (app->input->GetMouseButtonDown(1))
+			{
+				active = false;
+				app->scene_lvl->active = true;
+			}
+		}
+
+		if (playMode2->DetectColision())
+		{
+			if (app->input->GetMouseButtonDown(1))
+			{
+
+			}
+		}
+
+		if (options->DetectColision())
+		{
+			if (app->input->GetMouseButtonDown(1))
+			{
+
+			}
+		}
+
+		if (exit->DetectColision())
+		{
+			if (app->input->GetMouseButtonDown(1))
+			ret = false;
+		}
+
+		if (credits->DetectColision())
+		{
+			if (app->input->GetMouseButtonDown(1))
+			{
+
+			}
+		}
+	}
 
 	LOG("mouse x: %d,  mouse y: %d", mouse.x, mouse.y);
 	return ret;
@@ -84,7 +133,19 @@ bool Scene_StartMenu::PostUpdate()
 {
 	bool ret = true;
 
-	
+	if (endAnimation == true)
+	{
+		//Play1
+		app->render->DrawRectangle({255,255,275,100},255,255,255);	
+		//Play2
+		app->render->DrawRectangle({625,255,275,100},255,255,255);
+		//options
+		app->render->DrawRectangle({ 1000,255,275,100 }, 255, 255, 255);
+		//exit
+		app->render->DrawRectangle({ 425,500,275,100 }, 255, 255, 255);
+		//credtis
+		app->render->DrawRectangle({ 800,500,275,100 }, 255, 255, 255);
+	}
 
 	return ret;
 }
