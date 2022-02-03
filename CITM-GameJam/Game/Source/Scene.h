@@ -44,6 +44,7 @@ public:
 
 	// Create random rajola in coords
 	void CreateRajola(iPoint p);
+	void Enrajolar();
 
 	// Draw Rajoles
 	void DrawRajoles();
