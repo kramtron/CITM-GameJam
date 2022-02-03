@@ -60,12 +60,13 @@ bool Scene_Lvl::Update(float dt)
 	{
 		if (app->input->GetMouseButtonDown(1))
 		{
-
+			app->scene->lvl_selected = selectMap;
 			active = false;
 			app->scene->active = true;
 		}
 	}	
-	
+
+
 	if (butt1->DetectColision())
 	{
 		if (app->input->GetMouseButtonDown(1))
