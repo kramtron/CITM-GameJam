@@ -7,6 +7,8 @@
 
 #define WH 125
 #define CWH 30.0f
+#define FilesRaj 30
+#define ColumnesRaj 24
 
 class rajola {
 public:

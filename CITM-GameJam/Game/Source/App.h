@@ -6,6 +6,8 @@
 
 #include "PugiXml/src/pugixml.hpp"
 
+#include <chrono>
+
 #define CONFIG_FILENAME		"config.xml"
 #define SAVE_STATE_FILENAME "save_game.xml"
 
@@ -101,6 +103,10 @@ public:
 	Scene_Win* scene_win;
 
 	bool pause = false;
+	
+	//chrono
+	std::chrono::time_point<std::chrono::steady_clock, std::chrono::duration<_int64, std::ratio<1, 1000000000>>>
+		timer;
 
 private:
 
