@@ -65,23 +65,64 @@ bool Scene_Lvl::Update(float dt)
 	}
 
 	if (mouse.y >= 175 && mouse.y <= 625)
-	{
-		/*
-		* on click guarda pos, pos guardada menys pos actual
-		*/
-		
-		if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+	{		
+		if (posMap <= 5100 && posMap >= -5100)
 		{
-			posOnClick = mouse.x-posMap;
-		}
+			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			{
+				posOnClick = mouse.x-posMap;
+			}
 
-		if (app->input->GetMouseButtonDown(1) == KEY_REPEAT)
+			if (app->input->GetMouseButtonDown(1) == KEY_REPEAT)
+			{
+				posMap = mouse.x - posOnClick;
+			}		
+		}
+		else if (posMap <= 5075)
 		{
-			posMap = mouse.x - posOnClick;
-
+			posMap += 1;
 		}
-		
+		else if (posMap >= -5075)
+		{
+			posMap -= 1;
+		}
 	}
+
+	/*
+	if (posMap < -4550)
+		selectMap = 0;
+	else if (posMap <= -3850 && posMap >= 3250)
+		selectMap = 1;
+	else if (posMap <= -3125 && posMap >= -2525)
+		selectMap = 2;
+	else if (posMap <= -2400 && posMap >= -1800)
+		selectMap = 3;
+	else if (posMap <= -1675 && posMap >= -1075)
+		selectMap = 4;
+	else if (posMap <= -950 && posMap >= -350)
+		selectMap = 5;
+	else if (posMap <= -225 && posMap >= 375)
+		selectMap = 6;
+	else if (posMap <= 500 && posMap >= 1100)
+		selectMap = 7;
+	else if (posMap <= 1225 && posMap >= 1825)
+		selectMap = 8;
+	else if (posMap <= 1950 && posMap >= 2550)
+		selectMap = 9;
+	else if (posMap <= 2675 && posMap >= 3275)
+		selectMap = 10;
+	else if (posMap <= 3400 && posMap >= 4000)
+		selectMap = 11;
+	else if (posMap <= 4125 && posMap >= 4725)
+		selectMap = 12;
+	else if (posMap <= 4850 && posMap >= 5450)
+		selectMap = 13;
+	else if (posMap > 5600)
+		selectMap = 14;
+
+	LOG("Mapa Selected %d", selectMap);
+	*/
+
 	return ret;
 }
 
@@ -89,11 +130,21 @@ bool Scene_Lvl::Update(float dt)
 bool Scene_Lvl::PostUpdate()
 {
 	bool ret = true;
+	app->render->DrawRectangle({ -4550 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ -3825 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ -3100 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ -2375 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ -1650 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ -925 + posMap,225,550,350 }, 255, 255, 255);
 	app->render->DrawRectangle({ -200 + posMap,225,550,350 }, 255, 255, 255);
 	app->render->DrawRectangle({ 525 + posMap,225,550,350 }, 255, 255, 255);
 	app->render->DrawRectangle({ 1250 + posMap,225,550,350 }, 255, 255, 255);
-
-
+	app->render->DrawRectangle({ 1975 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 2700 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 3425 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 4150 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 4875 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 5600 + posMap,225,550,350 }, 255, 255, 255);
 
 
 	app->render->DrawRectangle({ 50,750,250,100 }, 255, 255, 255);

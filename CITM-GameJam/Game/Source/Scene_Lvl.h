@@ -42,6 +42,8 @@ public:
 	int posMap;
 	int goodPosMap;
 
+	int selectMap;
+
 private:
 
 	
