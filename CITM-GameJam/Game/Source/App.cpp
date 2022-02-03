@@ -134,6 +134,7 @@ bool App::Start()
 bool App::Update()
 {
 	bool ret = true;
+
 	PrepareUpdate();
 
 	if(input->GetWindowEvent(WE_QUIT) == true)

@@ -45,10 +45,11 @@ bool Scene::Start()
 	trencadis = app->tex->Load("Assets/trencadis.png");
 	brillibrilli = app->tex->Load("Assets/brillitu.png");
 	
-	CreateRajola(iPoint(200, 200));
-	CreateRajola(iPoint(400, 200));
-	CreateRajola(iPoint(400, 400));
-	CreateRajola(iPoint(200, 400));
+	for (int i = 0; i < 128; ++i) {
+		for (int j = 0; j < 9; ++j) {
+			CreateRajola(iPoint(100*i, 100*j));
+		}
+	}
 
 	return true;
 }
@@ -69,10 +70,8 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 		debug = !debug;
 	
-	if (hoveringRajola != nullptr) {
-		app->render->DrawCircle(hoveringRajola->p.x, hoveringRajola->p.y, 2, 255, 255, 255, 255);
-		hoveringRajola = nullptr;
-	}
+	//Restart hovering Rajola
+	hoveringRajola = nullptr;
 	
 	//Grabbing Rajola
 	if (grabbing) {
@@ -128,6 +127,10 @@ bool Scene::PostUpdate()
 	//Draw all present Rajoles
 	DrawRajoles();
 
+	//Draw BrilliBrilli
+	if(hoveringRajola != nullptr)
+		app->render->DrawTexture(brillibrilli, hoveringRajola->p.x, hoveringRajola->p.y, NULL, 1.0f, hoveringRajola->s);
+
 	//Debug draw
 	if (debug) 
 		DebugDrawRajoles();
@@ -141,6 +144,12 @@ bool Scene::CleanUp()
 	LOG("Freeing scene");
 
 	//Need to clean up Rajoles list
+	Rajoles.clear();
+
+	trencadis = nullptr;
+	brillibrilli = nullptr;
+	grabbedRajola = nullptr;
+	hoveringRajola = nullptr;
 
 	return true;
 }
@@ -149,8 +158,8 @@ void Scene::CreateRajola(iPoint p)
 {
 	float f = ReRandomize() % 5 + 8;	//Random SCALE between .8 and 1.2
 
-	int raj = ReRandomize() % (FilesRaj * ColumnesRaj);	//SPRITE RAJOLES -> 30 per fila, 24 per columna
-	iPoint i = iPoint((raj / FilesRaj) * WH, (raj % FilesRaj) * WH);
+	//SPRITE RAJOLES -> 30 per fila, 24 per columna
+	iPoint i = iPoint((ReRandomize() % FilesRaj) * WH, (ReRandomize() % ColumnesRaj) * WH);
 
 	rajola* r = new rajola(p, i, ReRandomize() % 360, (f / 10.0f));
 	Rajoles.add(r);
@@ -158,9 +167,9 @@ void Scene::CreateRajola(iPoint p)
 
 void Scene::DrawRajoles() {
 	for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); currentRajola != nullptr; currentRajola = currentRajola->next) {
-		SDL_Rect* rect = new SDL_Rect { currentRajola->data->sp.x, currentRajola->data->sp.x, WH, WH}; //Rajola w/h = 125
+		SDL_Rect* rect = new SDL_Rect { currentRajola->data->sp.x, currentRajola->data->sp.y, WH, WH}; //Rajola w/h = 125
 		app->render->DrawTexture(trencadis, currentRajola->data->p.x, currentRajola->data->p.y,
-								rect, 1.0f, currentRajola->data->s, currentRajola->data->a);//, WH / 2, WH / 2);
+								rect, 1.0f, currentRajola->data->s, currentRajola->data->a);
 	}
 }
 
@@ -176,6 +185,7 @@ void Scene::DebugDrawRajoles() {
 }
 
 int Scene::ReRandomize() {
-	srand(chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now() - app->Timer).count());
+	//srand(chrono::duration_cast<chrono::nanoseconds>(chrono::steady_clock::now() - app->Timer).count());
+	srand(time(NULL));
 	return rand();
 }
