@@ -67,7 +67,11 @@ bool Scene::Update(float dt)
 	
 	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 		debug = !debug;
-
+	
+	if (hoveringRajola != nullptr) {
+		app->render->DrawCircle(hoveringRajola->p.x, hoveringRajola->p.y, 2, 255, 255, 255, 255);
+	}
+	
 	//Grabbing Rajola
 	if (grabbing) {
 
@@ -85,20 +89,31 @@ bool Scene::Update(float dt)
 	}
 	//Not grabbing Rajola
 	else {
-		if (app->input->GetMouseButtonDown(1) == KEY_DOWN) {
-			//Check if any Rajola is clicking
-			iPoint mp;
-			app->input->GetMousePosition(mp.x, mp.y);
-			for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); (currentRajola != nullptr) && (!grabbing); currentRajola = currentRajola->next) {
-				if (currentRajola->data->DetectGrab(mp)) {
-					grabbedRajola = currentRajola->data;
-					grabbedRajola->setGrab(true);
-					grabbing = true;
+		//Check if any Rajola is clicking
+		iPoint mp;
+		app->input->GetMousePosition(mp.x, mp.y);
+		bool clicked = false;
+		for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); (currentRajola != nullptr) && (!grabbing); currentRajola = currentRajola->next) {
+			//Mouse hover detection
+			if (currentRajola->data->DetectCollision(mp)) {
+				//Hovering
+				hoveringRajola = currentRajola->data;
+
+				//Hoverning and clicking
+				if (app->input->GetMouseButtonDown(1) == KEY_DOWN) {
+					if (currentRajola->data->DetectGrab(mp)) {
+						grabbedRajola = currentRajola->data;
+						grabbedRajola->setGrab(true);
+						clicked = true;
+					}
 				}
 			}
 		}
+		if (clicked) {
+			grabbing = true;
+			hoveringRajola = nullptr;
+		}
 	}
-	
 
 	return ret;
 }

@@ -9,7 +9,7 @@
 #define CWH 40.0f
 #define FilesRaj 30
 #define ColumnesRaj 24
-#define RajolaGlobalScale 1.0f
+#define RajolaGlobalScale 0.5f
 
 class rajola {
 public:
@@ -24,6 +24,7 @@ public:
 	}
 
 	bool DetectGrab(iPoint mouse);	//if it collides, grab = true, and returns true
+	bool DetectCollision(iPoint mouse);
 
 	void setGrab(bool b);
 	bool Grabbed();
