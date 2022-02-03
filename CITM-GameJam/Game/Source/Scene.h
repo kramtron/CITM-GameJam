@@ -54,13 +54,14 @@ public:
 public:
 	p2List<rajola*> Rajoles;
 	SDL_Texture* trencadis = nullptr;
+	SDL_Texture* brillibrilli = nullptr;
 	bool grabbing = false;
 	rajola* grabbedRajola = nullptr;
 	rajola* hoveringRajola = nullptr;
 
 	bool debug = false;
 
-	int lvl_selected;
+	int lvl_selected = 0;
 };
 
 #endif // __SCENE_H__

@@ -43,6 +43,7 @@ bool Scene::Start()
 	active = false;
 
 	trencadis = app->tex->Load("Assets/trencadis.png");
+	brillibrilli = app->tex->Load("Assets/brillitu.png");
 	
 	CreateRajola(iPoint(200, 200));
 	CreateRajola(iPoint(400, 200));
@@ -70,6 +71,7 @@ bool Scene::Update(float dt)
 	
 	if (hoveringRajola != nullptr) {
 		app->render->DrawCircle(hoveringRajola->p.x, hoveringRajola->p.y, 2, 255, 255, 255, 255);
+		hoveringRajola = nullptr;
 	}
 	
 	//Grabbing Rajola
