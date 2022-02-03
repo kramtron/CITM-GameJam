@@ -76,6 +76,8 @@ bool Input::PreUpdate()
 		}
 	}
 
+	mouseWheel = 0;
+
 	for(int i = 0; i < NUM_MOUSE_BUTTONS; ++i)
 	{
 		if(mouseButtons[i] == KEY_DOWN)
@@ -112,6 +114,10 @@ bool Input::PreUpdate()
 					break;
 				}
 			break;
+
+			case SDL_MOUSEWHEEL:
+				mouseWheel = event.wheel.y;
+				break;
 
 			case SDL_MOUSEBUTTONDOWN:
 				mouseButtons[event.button.button - 1] = KEY_DOWN;
@@ -199,4 +205,8 @@ void Input::GetMouseMotion(int& x, int& y)
 {
 	x = mouseMotionX;
 	y = mouseMotionY;
+}
+
+int Input::GetMouseWheelMotion() {
+	return mouseWheel;
 }

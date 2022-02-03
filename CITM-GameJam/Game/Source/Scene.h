@@ -6,7 +6,11 @@
 #include "Rajola.h"
 #include "p2List.h"
 #include <chrono>
+
+#define MOUSE_WHEEL_SENSITIVITY 10
+
 using namespace std;
+
 
 struct SDL_Texture;
 

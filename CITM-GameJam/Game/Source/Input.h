@@ -64,6 +64,7 @@ public:
 	// Get mouse / axis position
 	void GetMousePosition(int &x, int &y);
 	void GetMouseMotion(int& x, int& y);
+	int GetMouseWheelMotion();
 
 	int mouseX;
 	int mouseY;
@@ -74,6 +75,7 @@ private:
 	KeyState mouseButtons[NUM_MOUSE_BUTTONS];
 	int	mouseMotionX;
 	int mouseMotionY;
+	int mouseWheel;
 };
 
 #endif // __INPUT_H__

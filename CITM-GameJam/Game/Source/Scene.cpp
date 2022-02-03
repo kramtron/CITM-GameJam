@@ -77,6 +77,8 @@ bool Scene::Update(float dt)
 		if (app->input->GetMouseButtonDown(1) == KEY_DOWN) {
 			grabbing = false;
 		}
+
+		grabbedRajola->a += app->input->GetMouseWheelMotion() * MOUSE_WHEEL_SENSITIVITY;
 	}
 	//Not grabbing Rajola
 	else {
@@ -125,18 +127,19 @@ bool Scene::CleanUp()
 void Scene::CreateRajola(iPoint p)
 {
 	srand(time(NULL));
-
-	float f = rand() % 5 + 8;
-	iPoint i = iPoint(rand() % 30 * 125, rand() % 24 * 125);	//SPRITE RAJOLES -> 30 per fila, 24 per columna, widht/height = 125
+	
+	float f = rand() % 5 + 8;	//Random SCALE between .8 and 1.2
+	int raj = rand() % (FilesRaj * ColumnesRaj);	//SPRITE RAJOLES -> 30 per fila, 24 per columna
+	iPoint i = iPoint((raj / FilesRaj) * WH, (raj % FilesRaj) * WH);
 	rajola* r = new rajola(p, i, rand() % 360, (f / 10.0f));
 	Rajoles.add(r);
 }
 
 void Scene::DrawRajoles() {
 	for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); currentRajola != nullptr; currentRajola = currentRajola->next) {
-		SDL_Rect* rect = new SDL_Rect { currentRajola->data->sp.x, currentRajola->data->sp.x, 125, 125}; //Rajola w/h = 125
-		app->render->DrawTexture(trencadis, currentRajola->data->p.x, currentRajola->data->p.y, rect, 1.0f);//, currentRajola->data->s,
-			//currentRajola->data->a , currentRajola->data->p.x + (125/2), currentRajola->data->p.y + (125 / 2));
+		SDL_Rect* rect = new SDL_Rect { currentRajola->data->sp.x, currentRajola->data->sp.x, WH, WH}; //Rajola w/h = 125
+		app->render->DrawTexture(trencadis, currentRajola->data->p.x, currentRajola->data->p.y, rect, 1.0f, currentRajola->data->s,
+			currentRajola->data->a);//, WH / 2, WH / 2);
 	}
 }
 
@@ -147,5 +150,6 @@ void Scene::DebugDrawRajoles() {
 							currentRajola->data->p.y + (WH / 2) - currentRajola->data->c,
 							currentRajola->data->c*2, currentRajola->data->c*2 };
 		app->render->DrawRectangle(rect, 255, 0, 0, 100);
+		app->render->DrawCircle(currentRajola->data->p.x + WH/2, currentRajola->data->p.y + WH/2, 1, 0, 0, 255);
 	}
 }
