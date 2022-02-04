@@ -45,6 +45,7 @@ public:
 	// Create random rajola in coords
 	void CreateRajola(iPoint p);
 	void Enrajolar();
+	void ClearRajoles();
 
 	// Draw Rajoles
 	void DrawRajoles();
@@ -56,6 +57,7 @@ public:
 	p2List<rajola*> Rajoles;
 	SDL_Texture* trencadis = nullptr;
 	SDL_Texture* brillibrilli = nullptr;
+	SDL_Texture* mapa = nullptr;
 	bool grabbing = false;
 	rajola* grabbedRajola = nullptr;
 	rajola* hoveringRajola = nullptr;

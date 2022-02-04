@@ -83,6 +83,9 @@ public:
 	Button* exitCredits = nullptr;
 	Button* exitSettings = nullptr;
 
+	int circleFX_x = 900;
+	int circleVol_x = 900;
+
 	int exitCount = 10;
 
 private:

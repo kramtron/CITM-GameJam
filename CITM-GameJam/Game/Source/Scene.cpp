@@ -43,7 +43,8 @@ bool Scene::Start()
 	active = false;
 
 	trencadis = app->tex->Load("Assets/trencadis.png");
-	brillibrilli = app->tex->Load("Assets/brillitu2.png");
+	brillibrilli = app->tex->Load("Assets/brillitu.png");
+	mapa = app->tex->Load("Assets/mapesTest.png");
 	
 	Enrajolar();
 
@@ -66,7 +67,7 @@ bool Scene::Update(float dt)
 	
 	//Refresh Rajoles
 	if (app->input->GetMouseButtonDown(3) == KEY_DOWN) {
-		Rajoles.clear();
+		ClearRajoles();
 		Enrajolar();
 		grabbing = false;
 	}
@@ -123,7 +124,8 @@ bool Scene::Update(float dt)
 // Called each loop iteration
 bool Scene::PostUpdate()
 {
-	//bool ret = true;
+	//Draw map
+	app->render->DrawTexture(mapa, 0, 0);
 
 	//Draw all present Rajoles
 	DrawRajoles();
@@ -149,23 +151,41 @@ bool Scene::CleanUp()
 
 	trencadis = nullptr;
 	brillibrilli = nullptr;
+	mapa = nullptr;
 	grabbedRajola = nullptr;
 	hoveringRajola = nullptr;
 
 	return true;
 }
 
+void Scene::ClearRajoles() {
+	for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); currentRajola != nullptr; currentRajola = currentRajola->next) {
+		iPoint p = currentRajola->data->p;
+		if ((p.x < 360 && p.x > 120 && p.y > 200 && p.y < 700) || (p.x < 1460 && p.x > 1220 && p.y > 200 && p.y < 700)) {
+			Rajoles.del(currentRajola);
+		}
+	}
+}
+
 void Scene::Enrajolar() {
-	for (int i = 0; i < 16; ++i) {
-		for (int j = 0; j < 9; ++j) {
-			CreateRajola(iPoint(100 * i, 100 * j));
+	//Left container
+	for (int i = 0; i < 2; ++i) {
+		for (int j = 0; j < 6; ++j) {
+			CreateRajola(iPoint(70 * i + 200, 70 * j + 240));	//espaiat entre rajoles 70, posició 200, 240
+		}
+	}
+
+	//Right container
+	for (int i = 0; i < 2; ++i) {
+		for (int j = 0; j < 6; ++j) {
+			CreateRajola(iPoint(70 * i + 1300, 70 * j + 240));
 		}
 	}
 }
 
 void Scene::CreateRajola(iPoint p)
 {
-	float f = ReRandomize() % 5 + 5;	//Random SCALE between .8 and 1.2
+	float f = ReRandomize() % 5 + 5;	//Random SCALE between .5 and .9
 
 	//SPRITE RAJOLES -> 30 per fila, 24 per columna
 	iPoint i = iPoint((ReRandomize() % FilesRaj) * WH, (ReRandomize() % ColumnesRaj) * WH);

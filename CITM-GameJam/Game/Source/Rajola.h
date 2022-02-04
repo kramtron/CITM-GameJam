@@ -9,7 +9,7 @@
 #define CWH 40.0f
 #define FilesRaj 30
 #define ColumnesRaj 24
-#define RajolaGlobalScale 0.5f
+#define RajolaGlobalScale 0.6f
 
 class rajola {
 public:
