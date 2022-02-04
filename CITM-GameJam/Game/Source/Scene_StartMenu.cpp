@@ -42,6 +42,7 @@ bool Scene_StartMenu::Start()
 	credits = new Button(800, 500, 275, 100);
 	
 	exitCredits = new Button(175, 175, 50, 50);
+	exitSettings = new Button(175, 175, 50, 50);
 
 	return true;
 }
@@ -84,7 +85,7 @@ bool Scene_StartMenu::Update(float dt)
 	}
 	//Se necesita un if que active el menu cuando un bool que te indique que la animación esté terminada esté en true
 	//A partir de ese punto se activa el menu
-	if (endAnimation == true)
+	if (endAnimation == true && creditsMenu == false && settingsMenu == false)
 	{
 		if (playMode1->DetectColision())
 		{
@@ -107,14 +108,17 @@ bool Scene_StartMenu::Update(float dt)
 		{
 			if (app->input->GetMouseButtonDown(1))
 			{
-
+				endAnimation = false;
+				settingsMenu = true;
 			}
 		}
 
 		if (exit->DetectColision())
 		{
 			if (app->input->GetMouseButtonDown(1))
-			ret = false;
+			{
+				ret = false;
+			}
 		}
 
 		if (credits->DetectColision())
@@ -163,7 +167,7 @@ bool Scene_StartMenu::PostUpdate()
 		app->render->DrawRectangle({ 800,500,275,100 }, 255, 255, 255);
 	}
 
-	//redits
+	//credits
 	if (creditsMenu == true)
 	{
 		//Menu Fondo
@@ -171,6 +175,28 @@ bool Scene_StartMenu::PostUpdate()
 		//return menu
 		app->render->DrawRectangle({ 175,175,50,50 }, 125, 125, 125);
 
+	}
+
+	//settings
+	if (settingsMenu == true)
+	{
+		//Setting fondo
+		app->render->DrawRectangle({ 100,100,1400,700 }, 255, 255, 255);
+		//return menu
+		app->render->DrawRectangle({ 175,175,50,50 }, 125, 125, 125);
+
+		//slider vol
+		app->render->DrawRectangle({ 450,250,900,25 }, 125, 125, 125);
+		//sliderBall vol
+		app->render->DrawRectangle({ 900,250,50,50 }, 125, 125, 125);
+
+		//slider fx
+		app->render->DrawRectangle({ 450,475,900,25 }, 125, 125, 125);
+		//sliderBall fx
+		app->render->DrawRectangle({ 900,475,50,50 }, 125, 125, 125);
+
+		//check fullscreen
+		app->render->DrawRectangle({ 800,650,100,100 }, 125, 125, 125);
 	}
 
 	return ret;
