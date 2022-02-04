@@ -40,6 +40,8 @@ bool Scene_StartMenu::Start()
 	options = new Button(1000, 255, 275, 100);
 	exit = new Button(425, 500, 275, 100);
 	credits = new Button(800, 500, 275, 100);
+	
+	exitCredits = new Button(175, 175, 50, 50);
 
 	return true;
 }
@@ -119,7 +121,20 @@ bool Scene_StartMenu::Update(float dt)
 		{
 			if (app->input->GetMouseButtonDown(1))
 			{
+				endAnimation = false;
+				creditsMenu = true;
+			}
+		}
+	}
 
+	if (creditsMenu == true)
+	{
+		if (exitCredits->DetectColision())
+		{
+			if (app->input->GetMouseButtonDown(1))
+			{
+				creditsMenu = false;
+				endAnimation = true;
 			}
 		}
 	}
@@ -133,6 +148,7 @@ bool Scene_StartMenu::PostUpdate()
 {
 	bool ret = true;
 
+	//menu principal
 	if (endAnimation == true)
 	{
 		//Play1
@@ -145,6 +161,16 @@ bool Scene_StartMenu::PostUpdate()
 		app->render->DrawRectangle({ 425,500,275,100 }, 255, 255, 255);
 		//credtis
 		app->render->DrawRectangle({ 800,500,275,100 }, 255, 255, 255);
+	}
+
+	//redits
+	if (creditsMenu == true)
+	{
+		//Menu Fondo
+		app->render->DrawRectangle({ 100,100,1400,700 }, 255, 255, 255);
+		//return menu
+		app->render->DrawRectangle({ 175,175,50,50 }, 125, 125, 125);
+
 	}
 
 	return ret;
