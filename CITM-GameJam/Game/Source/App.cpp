@@ -87,7 +87,8 @@ bool App::Awake()
 		configApp = config.child("app");
 
 		// L01: DONE 4: Read the title from the config file
-		title.Create(configApp.child("title").child_value());
+		//title.Create(configApp.child("title").child_value());
+		title.Create("Joc diverteix-te trencadis catala modernista colorit");
 		organization.Create(configApp.child("organization").child_value());
 	}
 
