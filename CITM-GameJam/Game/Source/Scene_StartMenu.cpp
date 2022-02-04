@@ -42,6 +42,7 @@ bool Scene_StartMenu::Start()
 	credits = new Button(800, 500, 275, 100);
 	
 	exitCredits = new Button(175, 175, 50, 50);
+	exitSettings = new Button(175, 175, 50, 50);
 
 	return true;
 }
@@ -70,7 +71,7 @@ bool Scene_StartMenu::Update(float dt)
 	//En caso de estar dentro de la distancia del circulo activa el if
 	if(400*400>distance&&destroyCircle==false){
 		//Cuando pulsas el boton izquierdo destruyes el circulo
-		if (app->input->GetMouseButtonDown(mouse.left)) {
+		if (app->input->GetMouseButtonDown(mouse.left) == KEY_DOWN) {
 			//Aqui va la activacion de la animación de como se destruye el trencadis
 			destroyCircle = true;
 		}
@@ -81,14 +82,16 @@ bool Scene_StartMenu::Update(float dt)
 
 		//quan acabi l'animació s'activa el menu
 		endAnimation = true;
+		if(exitCount != 0)
+		exitCount--;
 	}
 	//Se necesita un if que active el menu cuando un bool que te indique que la animación esté terminada esté en true
 	//A partir de ese punto se activa el menu
-	if (endAnimation == true)
+	if (endAnimation == true && creditsMenu == false && settingsMenu == false)
 	{
 		if (playMode1->DetectColision())
 		{
-			if (app->input->GetMouseButtonDown(1))
+			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
 			{
 				active = false;
 				app->scene_lvl->active = true;
@@ -97,7 +100,7 @@ bool Scene_StartMenu::Update(float dt)
 
 		if (playMode2->DetectColision())
 		{
-			if (app->input->GetMouseButtonDown(1))
+			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
 			{
 
 			}
@@ -105,21 +108,24 @@ bool Scene_StartMenu::Update(float dt)
 
 		if (options->DetectColision())
 		{
-			if (app->input->GetMouseButtonDown(1))
+			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
 			{
-
+				endAnimation = false;
+				settingsMenu = true;
 			}
 		}
 
-		if (exit->DetectColision())
+		if (exit->DetectColision() && exitCount == 0)
 		{
-			if (app->input->GetMouseButtonDown(1))
-			ret = false;
+			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			{
+				ret = false;
+			}
 		}
 
 		if (credits->DetectColision())
 		{
-			if (app->input->GetMouseButtonDown(1))
+			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
 			{
 				endAnimation = false;
 				creditsMenu = true;
@@ -131,9 +137,21 @@ bool Scene_StartMenu::Update(float dt)
 	{
 		if (exitCredits->DetectColision())
 		{
-			if (app->input->GetMouseButtonDown(1))
+			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
 			{
 				creditsMenu = false;
+				endAnimation = true;
+			}
+		}
+	}
+
+	if (settingsMenu == true)
+	{
+		if (exitSettings->DetectColision())
+		{
+			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			{
+				settingsMenu = false;
 				endAnimation = true;
 			}
 		}
@@ -163,7 +181,7 @@ bool Scene_StartMenu::PostUpdate()
 		app->render->DrawRectangle({ 800,500,275,100 }, 255, 255, 255);
 	}
 
-	//redits
+	//credits
 	if (creditsMenu == true)
 	{
 		//Menu Fondo
@@ -171,6 +189,28 @@ bool Scene_StartMenu::PostUpdate()
 		//return menu
 		app->render->DrawRectangle({ 175,175,50,50 }, 125, 125, 125);
 
+	}
+
+	//settings
+	if (settingsMenu == true)
+	{
+		//Setting fondo
+		app->render->DrawRectangle({ 100,100,1400,700 }, 255, 255, 255);
+		//return menu
+		app->render->DrawRectangle({ 175,175,50,50 }, 125, 125, 125);
+
+		//slider vol
+		app->render->DrawRectangle({ 450,250,900,25 }, 125, 125, 125);
+		//sliderBall vol
+		app->render->DrawRectangle({ 900,225,75,75 }, 125, 125, 125);
+
+		//slider fx
+		app->render->DrawRectangle({ 450,475,900,25 }, 125, 125, 125);
+		//sliderBall fx
+		app->render->DrawRectangle({ 900,450,75,75 }, 125, 125, 125);
+
+		//check fullscreen
+		app->render->DrawRectangle({ 800,650,125,125 }, 125, 125, 125);
 	}
 
 	return ret;
