@@ -83,6 +83,8 @@ public:
 	Button* exitCredits = nullptr;
 	Button* exitSettings = nullptr;
 
+	int exitCount = 10;
+
 private:
 
 	
