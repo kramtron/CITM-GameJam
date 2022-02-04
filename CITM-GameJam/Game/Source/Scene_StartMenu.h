@@ -71,12 +71,16 @@ public:
 
 	bool destroyCircle = false;
 	bool endAnimation = false;
+	bool creditsMenu = false;
 
 	Button* playMode1 = nullptr;
 	Button* playMode2 = nullptr;
 	Button* options = nullptr;
 	Button* exit = nullptr;
 	Button* credits = nullptr;
+
+	Button* exitCredits = nullptr;
+
 private:
 
 	
