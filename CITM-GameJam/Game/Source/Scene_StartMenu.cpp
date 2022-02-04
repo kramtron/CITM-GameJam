@@ -89,27 +89,30 @@ bool Scene_StartMenu::Update(float dt)
 	//A partir de ese punto se activa el menu
 	if (endAnimation == true && creditsMenu == false && settingsMenu == false)
 	{
-		if (playMode1->DetectColision())
+		if (playMode1->DetectColision() && exitCount == 0)
 		{
-			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			if (app->input->GetMouseButtonDown(1) == KEY_UP)
 			{
+				exitCount = 10;
 				active = false;
 				app->scene_lvl->active = true;
 			}
 		}
 
-		if (playMode2->DetectColision())
+		if (playMode2->DetectColision() && exitCount == 0)
 		{
-			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			if (app->input->GetMouseButtonDown(1) == KEY_UP)
 			{
+				exitCount = 10;
 
 			}
 		}
 
-		if (options->DetectColision())
+		if (options->DetectColision() && exitCount == 0)
 		{
-			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			if (app->input->GetMouseButtonDown(1) == KEY_UP)
 			{
+				exitCount = 10;
 				endAnimation = false;
 				settingsMenu = true;
 			}
@@ -117,16 +120,17 @@ bool Scene_StartMenu::Update(float dt)
 
 		if (exit->DetectColision() && exitCount == 0)
 		{
-			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			if (app->input->GetMouseButtonDown(1) == KEY_UP)
 			{
 				ret = false;
 			}
 		}
 
-		if (credits->DetectColision())
+		if (credits->DetectColision() && exitCount == 0)
 		{
-			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			if (app->input->GetMouseButtonDown(1) == KEY_UP)
 			{
+				exitCount = 10;
 				endAnimation = false;
 				creditsMenu = true;
 			}
@@ -135,10 +139,12 @@ bool Scene_StartMenu::Update(float dt)
 
 	if (creditsMenu == true)
 	{
-		if (exitCredits->DetectColision())
+		//return menu
+		if (exitCredits->DetectColision() && exitCount == 0)
 		{
-			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			if (app->input->GetMouseButtonDown(1) == KEY_UP)
 			{
+				exitCount = 10;
 				creditsMenu = false;
 				endAnimation = true;
 			}
@@ -147,12 +153,32 @@ bool Scene_StartMenu::Update(float dt)
 
 	if (settingsMenu == true)
 	{
-		if (exitSettings->DetectColision())
+		//return menu
+		if (exitSettings->DetectColision() && exitCount == 0)
 		{
-			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
+			if (app->input->GetMouseButtonDown(1) == KEY_UP)
 			{
+				exitCount = 10;
 				settingsMenu = false;
 				endAnimation = true;
+			}
+		}
+
+		//slider volumen
+		if ((mouse.x <= 1350 && mouse.x >= 425) && (mouse.y <= 300 && mouse.y >= 225) && exitCount == 0)
+		{
+			if (app->input->GetMouseButtonDown(1) == KEY_REPEAT)
+			{
+				circleVol_x = mouse.x - 33;
+			}
+		}
+
+		//slider fx
+		if ((mouse.x <= 1350 && mouse.x >= 425) && (mouse.y <= 525 && mouse.y >= 450) && exitCount == 0)
+		{
+			if (app->input->GetMouseButtonDown(1) == KEY_REPEAT)
+			{
+				circleFX_x = mouse.x - 33;
 			}
 		}
 	}
@@ -202,12 +228,12 @@ bool Scene_StartMenu::PostUpdate()
 		//slider vol
 		app->render->DrawRectangle({ 450,250,900,25 }, 125, 125, 125);
 		//sliderBall vol
-		app->render->DrawRectangle({ 900,225,75,75 }, 125, 125, 125);
+		app->render->DrawRectangle({ circleVol_x,225,75,75 }, 125, 125, 125);
 
 		//slider fx
 		app->render->DrawRectangle({ 450,475,900,25 }, 125, 125, 125);
 		//sliderBall fx
-		app->render->DrawRectangle({ 900,450,75,75 }, 125, 125, 125);
+		app->render->DrawRectangle({ circleFX_x,450,75,75 }, 125, 125, 125);
 
 		//check fullscreen
 		app->render->DrawRectangle({ 800,650,125,125 }, 125, 125, 125);
