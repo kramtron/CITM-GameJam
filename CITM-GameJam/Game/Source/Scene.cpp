@@ -224,6 +224,8 @@ bool Scene::CleanUp()
 	trencadis = nullptr;
 	brillibrilli = nullptr;
 	mapa = nullptr;
+	figura = nullptr;
+	instruccions = nullptr;
 	grabbedRajola = nullptr;
 	hoveringRajola = nullptr;
 
