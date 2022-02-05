@@ -196,7 +196,7 @@ void Scene::CreateRajola(iPoint p)
 
 void Scene::DrawRajoles() {
 	for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); currentRajola != nullptr; currentRajola = currentRajola->next) {
-		SDL_Rect* rect = new SDL_Rect { currentRajola->data->sp.x, currentRajola->data->sp.y, WH, WH }; //Rajola w/h = 125
+		SDL_Rect* rect = new SDL_Rect { currentRajola->data->sp.x + 10, currentRajola->data->sp.y + 10, WH - 20, WH -20 }; //Rajola w/h = 125
 		app->render->DrawTexture(trencadis, currentRajola->data->p.x, currentRajola->data->p.y,
 								rect, 1.0f, currentRajola->data->s, currentRajola->data->a);
 		delete rect;
