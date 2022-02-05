@@ -2,6 +2,7 @@
 #define __SCENE_STARTMENU_H__
 
 #include "Module.h"
+#include "Animation.h"
 
 struct SDL_Texture;
 
@@ -72,26 +73,19 @@ public:
 	bool destroyCircle = false;
 	bool endAnimation = false;
 	bool creditsMenu = false;
-	bool settingsMenu = false;
 
 	Button* playMode1 = nullptr;
-	Button* playMode2 = nullptr;
-	Button* options = nullptr;
 	Button* exit = nullptr;
 	Button* credits = nullptr;
 
 	Button* exitCredits = nullptr;
-	Button* exitSettings = nullptr;
-
-	int circleFX_x = 900;
-	int circleVol_x = 900;
 
 	int exitCount = 10;
 
 private:
-
-	
-
+	Animation menuAnimation;
+	SDL_Texture* animMenu = nullptr;
+	SDL_Texture* menu = nullptr;
 };
 
 

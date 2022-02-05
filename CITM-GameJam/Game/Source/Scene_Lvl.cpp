@@ -72,7 +72,7 @@ bool Scene_Lvl::Update(float dt)
 		if (app->input->GetMouseButtonDown(1))
 		{
 			active = false;
-			app->scene_logo->active = true;
+			app->scene_startmenu->active = true;
 		}
 	}
 

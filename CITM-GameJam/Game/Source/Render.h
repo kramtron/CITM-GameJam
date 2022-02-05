@@ -54,6 +54,7 @@ public:
 	SDL_Rect viewport;
 	SDL_Color background;
 	bool screenshot = false;
+	bool screenshotCheck = false;
 	int screenshots_taken = 0;
 };
 

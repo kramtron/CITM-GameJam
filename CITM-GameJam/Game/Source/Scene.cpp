@@ -91,6 +91,8 @@ bool Scene::Start()
 	
 	Enrajolar();
 
+	cameraCollider = { 750, 700, 100, 80 };
+
 	return true;
 }
 
@@ -118,12 +120,11 @@ bool Scene::Update(float dt)
 		grabbing = false;
 	}
 	
+	iPoint mp;
+	app->input->GetMousePosition(mp.x, mp.y);
+
 	//Grabbing Rajola
 	if (grabbing) {
-
-		iPoint mp;
-		app->input->GetMousePosition(mp.x, mp.y);
-
 		grabbedRajola->p.x = mp.x - grabbedRajola->grabPosition.x;
 		grabbedRajola->p.y = mp.y - grabbedRajola->grabPosition.y;
 
@@ -136,8 +137,6 @@ bool Scene::Update(float dt)
 	//Not grabbing Rajola
 	else {
 		//Check if any Rajola is clicking
-		iPoint mp;
-		app->input->GetMousePosition(mp.x, mp.y);
 		bool clicked = false;
 		for (p2List_item<rajola*>* currentRajola = Rajoles.getFirst(); (currentRajola != nullptr) && (!grabbing); currentRajola = currentRajola->next) {
 			//Mouse hover detection
@@ -162,8 +161,10 @@ bool Scene::Update(float dt)
 	}
 
 	//screenshot
-	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
+	if (app->input->GetMouseButtonDown(1) == KEY_DOWN && mp.x > cameraCollider.x && mp.x < (cameraCollider.x + cameraCollider.w) && 
+											 mp.y > cameraCollider.y && mp.y < (cameraCollider.y + cameraCollider.h)) {
 		app->render->screenshot = true;
+		screenshooting = 50;
 	}
 
 	return ret;
@@ -189,8 +190,23 @@ bool Scene::PostUpdate()
 		app->render->DrawTexture(brillibrilli, hoveringRajola->p.x, hoveringRajola->p.y, NULL, 1.0f, hoveringRajola->s);
 
 	//Debug draw
-	if (debug) 
+	if (debug) {
 		DebugDrawRajoles();
+
+		//Draw Camera Rectangle
+		app->render->DrawRectangle(cameraCollider, 0, 0, 255, 100);
+	}
+
+	//Screenshot Flash
+	if (screenshooting == 0)
+		app->render->screenshotCheck = true;
+	else
+		app->render->screenshotCheck = false;
+
+	if (screenshooting > 0) {
+		app->render->DrawRectangle(SDL_Rect{ 0, 0, 1600, 900}, 255, 255, 255, (150 / screenshooting) + 105);
+		screenshooting--;
+	}
 	
 	return true;
 }
