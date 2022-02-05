@@ -8,6 +8,7 @@
 #include "Scene_Logo.h"
 #include "Scene_Lvl.h"
 #include "Scene.h"
+#include "Animation.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -33,7 +34,17 @@ bool Scene_Logo::Awake()
 // Called before the first frame
 bool Scene_Logo::Start()
 {
+	intro = app->tex->Load("Assets/IntroAnimation.png");
 
+	introAnimation.Empty();
+	for (int j = 0; j < 3; ++j) {
+		for (int i = 0; i < 8; ++i) {
+			introAnimation.PushBack({ i * 1600, j * 900, 1600, 900 });
+		}
+	}
+	
+	introAnimation.speed = 0.005f;
+	introAnimation.loop = false;
 
 	return true;
 }
@@ -49,8 +60,10 @@ bool Scene_Logo::Update(float dt)
 {
 	bool ret = true;
 
-	app->render->DrawRectangle({ 100,100,10,10 }, 255, 255, 255);
-	
+	if (introAnimation.HasFinished()) {
+		active = false;
+		app->scene_startmenu->active = true;
+	}
 
 	return ret;
 }
@@ -60,6 +73,9 @@ bool Scene_Logo::PostUpdate()
 {
 	bool ret = true;
 
+	app->render->DrawTexture(intro, 0, 0, &introAnimation.GetCurrentFrame());
+	introAnimation.Update();
+
 	return ret;
 }
 
@@ -68,6 +84,9 @@ bool Scene_Logo::CleanUp()
 {
 	LOG("Freeing scene");
 	
+	introAnimation.Reset();
+	intro = nullptr;
+
 	return true;
 }
 

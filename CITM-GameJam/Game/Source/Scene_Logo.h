@@ -2,6 +2,7 @@
 #define __SCENE_LOGO_H__
 
 #include "Module.h"
+#include "Animation.h"
 
 struct SDL_Texture;
 
@@ -37,6 +38,8 @@ public:
 
 
 private:
+	Animation introAnimation;
+	SDL_Texture* intro = nullptr;
 };
 
 
