@@ -95,10 +95,16 @@ bool Render::PostUpdate()
 		screenshotName += ".bmp";
 		screenshots_taken++;
 
-		SDL_Surface* surfaces = app->win->screenSurface;
-		SDL_RenderReadPixels(renderers, NULL, formats, surfaces->pixels, surfaces->pitch);
+		//Image section
+		SDL_Rect r = { 200, 200, 400, 400 };
+		SDL_Window* window = SDL_CreateWindow(app->GetTitle(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, r.w, r.h, SDL_WINDOW_HIDDEN);
+
+		SDL_Surface* surfaces = SDL_GetWindowSurface(window);//app->win->screenSurface;
+		SDL_RenderReadPixels(renderers, &r, formats, surfaces->pixels, surfaces->pitch);
 		SDL_SaveBMP(surfaces, screenshotName.c_str());
 		SDL_FreeSurface(surfaces);
+
+		SDL_DestroyWindow(window);
 		screenshot = false;
 	}
 
