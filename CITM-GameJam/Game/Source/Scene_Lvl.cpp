@@ -77,7 +77,10 @@ bool Scene_Lvl::Update(float dt)
 	{
 		if (app->input->GetMouseButtonDown(1))
 		{
+			app->scene->CleanUp();
 			app->scene->lvl_selected = selectMap;
+			app->scene->Start();
+
 			active = false;
 			app->scene->active = true;
 		}
@@ -119,31 +122,31 @@ bool Scene_Lvl::Update(float dt)
 
 	
 	if (posMap >= -4749 && posMap <= -4025)
-		selectMap = 1;
+		selectMap = 0;
 	else if (posMap >= -4024 && posMap <= -3300)
-		selectMap = 2;
+		selectMap = 12;
 	else if (posMap >= -3299 && posMap <= -2575)
-		selectMap = 3;
+		selectMap = 11;
 	else if (posMap >= -2574 && posMap <= -1850)
-		selectMap = 4;
+		selectMap = 10;
 	else if (posMap >= -1849 && posMap <= -1125)
-		selectMap = 5;
+		selectMap = 9;
 	else if (posMap >= -1124 && posMap <= -400)
-		selectMap = 6;
+		selectMap = 8;
 	else if (posMap >= -399 && posMap <= 325)
 		selectMap = 7;
 	else if (posMap >= 326 && posMap <= 1050)
-		selectMap = 8;
+		selectMap = 6;
 	else if (posMap >= 1051 && posMap <= 1775)
-		selectMap = 9;
+		selectMap = 5;
 	else if (posMap >= 1776 && posMap <= 2500)
-		selectMap = 10;
+		selectMap = 4;
 	else if (posMap >= 2501 && posMap <= 3225)
-		selectMap = 11;
+		selectMap = 3;
 	else if (posMap >= 3226 && posMap <= 3950)
-		selectMap = 12;
+		selectMap = 2;
 	else if (posMap >= 3951 && posMap <= 4675)
-		selectMap = 13;
+		selectMap = 1;
 
 	return ret;
 }
@@ -180,13 +183,13 @@ bool Scene_Lvl::PostUpdate()
 	app->render->DrawTexture(fig4, -1775 + posMap, 200, NULL, NULL, 0.5);
 	app->render->DrawTexture(fig5, -1050 + posMap, 200, NULL, NULL, 0.5);
 	app->render->DrawTexture(fig6, -325 + posMap, 200, NULL, NULL, 0.5);
-	app->render->DrawTexture(UPC, 400 + posMap, 200, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig7, 1125 + posMap, 200, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig8, 1850 + posMap, 200, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig9, 2575 + posMap, 200, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig10, 3300 + posMap, 200, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig11, 4025 + posMap, 200, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig12, 4750 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig7, 400 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig8, 1125 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig9, 1850 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig10, 2575 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig11, 3300 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig12, 4025 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(UPC, 4750 + posMap, 200, NULL, NULL, 0.5);
 
 
 
