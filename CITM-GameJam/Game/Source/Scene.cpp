@@ -44,7 +44,50 @@ bool Scene::Start()
 
 	trencadis = app->tex->Load("Assets/trencadis.png");
 	brillibrilli = app->tex->Load("Assets/brillitu.png");
-	mapa = app->tex->Load("Assets/mapesTest.png");
+	mapa = app->tex->Load("Assets/scenemap.png");
+	instruccions = app->tex->Load("Assets/instruccions.png");
+
+	switch (lvl_selected) {
+	case 1:
+		figura = app->tex->Load("Assets/fig1.png");
+		break;
+	case 2:
+		figura = app->tex->Load("Assets/fig2.png");
+		break;
+	case 3:
+		figura = app->tex->Load("Assets/fig3.png");
+		break;
+	case 4:
+		figura = app->tex->Load("Assets/fig4.png");
+		break;
+	case 5:
+		figura = app->tex->Load("Assets/fig5.png");
+		break;
+	case 6:
+		figura = app->tex->Load("Assets/fig6.png");
+		break;
+	case 7:
+		figura = app->tex->Load("Assets/fig7.png");
+		break;
+	case 8:
+		figura = app->tex->Load("Assets/fig8.png");
+		break;
+	case 9:
+		figura = app->tex->Load("Assets/fig9.png");
+		break;
+	case 10:
+		figura = app->tex->Load("Assets/fig10.png");
+		break;
+	case 11:
+		figura = app->tex->Load("Assets/fig11.png");
+		break;
+	case 12:
+		figura = app->tex->Load("Assets/fig12.png");
+		break;
+	case 0:
+		figura = app->tex->Load("Assets/fig0.png");
+		break;
+	}
 	
 	Enrajolar();
 
@@ -54,6 +97,9 @@ bool Scene::Start()
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
+	//Restart hovering Rajola
+	hoveringRajola = nullptr;
+
 	return true;
 }
 
@@ -71,9 +117,6 @@ bool Scene::Update(float dt)
 		Enrajolar();
 		grabbing = false;
 	}
-
-	//Restart hovering Rajola
-	hoveringRajola = nullptr;
 	
 	//Grabbing Rajola
 	if (grabbing) {
@@ -118,6 +161,11 @@ bool Scene::Update(float dt)
 		}
 	}
 
+	//screenshot
+	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
+		app->render->screenshot = true;
+	}
+
 	return ret;
 }
 
@@ -126,6 +174,12 @@ bool Scene::PostUpdate()
 {
 	//Draw map
 	app->render->DrawTexture(mapa, 0, 0);
+
+	//Draw figura
+	app->render->DrawTexture(figura, 0, 0);
+
+	//Draw Instruccions
+	app->render->DrawTexture(instruccions, 700, 820);
 
 	//Draw all present Rajoles
 	DrawRajoles();
