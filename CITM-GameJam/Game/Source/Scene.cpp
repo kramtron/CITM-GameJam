@@ -197,6 +197,8 @@ bool Scene::PostUpdate()
 		app->render->DrawRectangle(cameraCollider, 0, 0, 255, 100);
 	}
 
+	app->render->DrawRectangle(SDL_Rect{300, 200, 1000, 600}, 0, 200, 0, 100);
+
 	//Screenshot Flash
 	if (screenshooting == 0)
 		app->render->screenshotCheck = true;
