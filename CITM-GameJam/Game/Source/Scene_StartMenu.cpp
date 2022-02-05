@@ -49,7 +49,6 @@ bool Scene_StartMenu::Start()
 			menuAnimation.PushBack({ i * 1600, j * 900, 1600, 900 });
 		}
 	}
-
 	menuAnimation.speed = 0.005f;
 	menuAnimation.loop = false;
 
@@ -88,11 +87,6 @@ bool Scene_StartMenu::Update(float dt)
 			//Aqui va la activacion de la animación de como se destruye el trencadis
 			destroyCircle = true;
 		}
-	}
-
-	if (destroyCircle && menuAnimation.HasFinished() == false)
-	{
-		menuAnimation.Update();
 	}
 
 	if (menuAnimation.HasFinished()) {
@@ -157,6 +151,8 @@ bool Scene_StartMenu::PostUpdate()
 	bool ret = true;
 
 	//Animation
+	if(destroyCircle)
+		menuAnimation.Update();
 	app->render->DrawTexture(animMenu, 0, 0, &menuAnimation.GetCurrentFrame());
 
 

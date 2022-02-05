@@ -65,6 +65,8 @@ public:
 	rajola* grabbedRajola = nullptr;
 	rajola* hoveringRajola = nullptr;
 
+	SDL_Rect cameraCollider;
+
 	bool debug = false;
 
 	int lvl_selected = 3;
