@@ -44,6 +44,18 @@ bool Scene_StartMenu::Start()
 	exitCredits = new Button(175, 175, 50, 50);
 	exitSettings = new Button(175, 175, 50, 50);
 
+	animMenu = app->tex->Load("Assets/menuAnimation.png");
+
+	menuAnimation.Empty();
+	for (int j = 0; j < 8; ++j) {
+		for (int i = 0; i < 8; ++i) {
+			menuAnimation.PushBack({ i * 1600, j * 900, 1600, 900 });
+		}
+	}
+
+	menuAnimation.speed = 0.005f;
+	menuAnimation.loop = false;
+
 	return true;
 }
 
@@ -192,8 +204,12 @@ bool Scene_StartMenu::PostUpdate()
 {
 	bool ret = true;
 
+	//Animation
+	app->render->DrawTexture(animMenu, 0, 0, &menuAnimation.GetCurrentFrame());
+	menuAnimation.Update();
+
 	//menu principal
-	if (endAnimation == true)
+	if (menuAnimation.HasFinished())
 	{
 		//Play1
 		app->render->DrawRectangle({255,255,275,100},255,255,255);	

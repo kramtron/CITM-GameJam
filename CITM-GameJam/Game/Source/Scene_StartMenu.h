@@ -2,6 +2,7 @@
 #define __SCENE_STARTMENU_H__
 
 #include "Module.h"
+#include "Animation.h"
 
 struct SDL_Texture;
 
@@ -89,9 +90,8 @@ public:
 	int exitCount = 10;
 
 private:
-
-	
-
+	Animation menuAnimation;
+	SDL_Texture* animMenu = nullptr;
 };
 
 
