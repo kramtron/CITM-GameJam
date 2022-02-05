@@ -58,13 +58,15 @@ public:
 	SDL_Texture* trencadis = nullptr;
 	SDL_Texture* brillibrilli = nullptr;
 	SDL_Texture* mapa = nullptr;
+	SDL_Texture* figura = nullptr;
+
 	bool grabbing = false;
 	rajola* grabbedRajola = nullptr;
 	rajola* hoveringRajola = nullptr;
 
 	bool debug = false;
 
-	int lvl_selected = 0;
+	int lvl_selected = 3;
 };
 
 #endif // __SCENE_H__
