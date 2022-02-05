@@ -47,6 +47,21 @@ public:
 	Button* butt1 = nullptr;
 	Button* butt2 = nullptr;
 
+	SDL_Texture* UPC = nullptr;
+	SDL_Texture* fig1 = nullptr;
+	SDL_Texture* fig2 = nullptr;
+	SDL_Texture* fig3 = nullptr;
+	SDL_Texture* fig4 = nullptr;
+	SDL_Texture* fig5 = nullptr;
+	SDL_Texture* fig6 = nullptr;
+	SDL_Texture* fig7 = nullptr;
+	SDL_Texture* fig8 = nullptr;
+	SDL_Texture* fig9 = nullptr;
+	SDL_Texture* fig10 = nullptr;
+	SDL_Texture* fig11 = nullptr;
+	SDL_Texture* fig12 = nullptr;
+
+
 private:
 
 	

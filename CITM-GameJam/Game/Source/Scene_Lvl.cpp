@@ -39,6 +39,21 @@ bool Scene_Lvl::Start()
 	butt1 = new Button(50, 750, 250, 100);
 	butt2 = new Button(1300, 750, 250, 100);
 
+	UPC = app->tex->Load("Assets/fig0.png");
+	fig1 = app->tex->Load("Assets/fig1.png");
+	fig2 = app->tex->Load("Assets/fig2.png");
+	fig3 = app->tex->Load("Assets/fig3.png");
+	fig4 = app->tex->Load("Assets/fig4.png");
+	fig5 = app->tex->Load("Assets/fig5.png");
+	fig6 = app->tex->Load("Assets/fig6.png");
+	fig7 = app->tex->Load("Assets/fig7.png");
+	fig8 = app->tex->Load("Assets/fig8.png");
+	fig9 = app->tex->Load("Assets/fig9.png");
+	fig10 = app->tex->Load("Assets/fig10.png");
+	fig11 = app->tex->Load("Assets/fig11.png");
+	fig12 = app->tex->Load("Assets/fig12.png");
+
+
 	return true;
 }
 
@@ -78,7 +93,7 @@ bool Scene_Lvl::Update(float dt)
 
 	if (mouse.y >= 175 && mouse.y <= 625)
 	{		
-		if (posMap <= 5100 && posMap >= -5100)
+		if (posMap <= 4313 && posMap >= -4387)
 		{
 			if (app->input->GetMouseButtonDown(1) == KEY_DOWN)
 			{
@@ -90,48 +105,46 @@ bool Scene_Lvl::Update(float dt)
 				posMap = mouse.x - posOnClick;
 			}		
 		}
-		else if (posMap <= 5075)
+		else if (posMap <= 4313)
 		{
 			posMap += 1;
 		}
-		else if (posMap >= -5075)
+		else if (posMap >= -4387)
 		{
 			posMap -= 1;
 		}
 	}
 
 	
-	if (posMap <= -5075)
-		selectMap = 0;
-	else if (posMap >= -4900 && posMap <= -4350)
-		selectMap = 1;
-	else if (posMap >= -4180 && posMap <= -3630)
-		selectMap = 2;
-	else if (posMap >= -3455 && posMap <= -2900)
-		selectMap = 3;
-	else if (posMap >= -2730 && posMap <= -2175)
-		selectMap = 4;
-	else if (posMap >= -2000 && posMap <= -1450)
-		selectMap = 5;
-	else if (posMap >= -1280 && posMap <= -725)
-		selectMap = 6;
-	else if (posMap >= -555 && posMap <= 0)
-		selectMap = 7;
-	else if (posMap >= 170 && posMap <= 725)
-		selectMap = 8;
-	else if (posMap >= 900 && posMap <= 1450)
-		selectMap = 9;
-	else if (posMap >= 1625 && posMap <= 2175)
-		selectMap = 10;
-	else if (posMap >= 2345 && posMap <= 2890)
-		selectMap = 11;
-	else if (posMap >= 3070 && posMap <= 3625)
-		selectMap = 12;
-	else if (posMap >= 3790 && posMap <= 4345)
-		selectMap = 13;
-	else if (posMap >= 4500)
-		selectMap = 14;
 
+	if (posMap >= -4749 && posMap <= -4025)
+		selectMap = 1;
+	else if (posMap >= -4024 && posMap <= -3300)
+		selectMap = 2;
+	else if (posMap >= -3299 && posMap <= -2575)
+		selectMap = 3;
+	else if (posMap >= -2574 && posMap <= -1850)
+		selectMap = 4;
+	else if (posMap >= -1849 && posMap <= -1125)
+		selectMap = 5;
+	else if (posMap >= -1124 && posMap <= -400)
+		selectMap = 6;
+	else if (posMap >= -399 && posMap <= 325)
+		selectMap = 7;
+	else if (posMap >= 326 && posMap <= 1050)
+		selectMap = 8;
+	else if (posMap >= 1051 && posMap <= 1775)
+		selectMap = 9;
+	else if (posMap >= 1776 && posMap <= 2500)
+		selectMap = 10;
+	else if (posMap >= 2501 && posMap <= 3225)
+		selectMap = 11;
+	else if (posMap >= 3226 && posMap <= 3950)
+		selectMap = 12;
+	else if (posMap >= 3951 && posMap <= 4675)
+		selectMap = 13;
+
+	LOG("Map: %d", selectMap);
 	return ret;
 }
 
@@ -145,8 +158,7 @@ bool Scene_Lvl::PostUpdate()
 	app->render->DrawRectangle({ 505,210,590,380 }, 0, 0, 0);
 
 	//Draw Maps
-	app->render->DrawRectangle({ -4550 + posMap,225,550,350 }, 255, 255, 255);
-	app->render->DrawRectangle({ -3825 + posMap,225,550,350 }, 255, 255, 255);
+	/*app->render->DrawRectangle({ -3825 + posMap,225,550,350 }, 255, 255, 255);
 	app->render->DrawRectangle({ -3100 + posMap,225,550,350 }, 255, 255, 255);
 	app->render->DrawRectangle({ -2375 + posMap,225,550,350 }, 255, 255, 255);
 	app->render->DrawRectangle({ -1650 + posMap,225,550,350 }, 255, 255, 255);
@@ -158,8 +170,23 @@ bool Scene_Lvl::PostUpdate()
 	app->render->DrawRectangle({ 2700 + posMap,225,550,350 }, 255, 255, 255);
 	app->render->DrawRectangle({ 3425 + posMap,225,550,350 }, 255, 255, 255);
 	app->render->DrawRectangle({ 4150 + posMap,225,550,350 }, 255, 255, 255);
-	app->render->DrawRectangle({ 4875 + posMap,225,550,350 }, 255, 255, 255);
-	app->render->DrawRectangle({ 5600 + posMap,225,550,350 }, 255, 255, 255);
+	app->render->DrawRectangle({ 4875 + posMap,225,550,350 }, 255, 255, 255);*/
+
+	app->render->DrawTexture(fig1, -3950 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig2, -3225 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig3, -2500 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig4, -1775 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig5, -1050 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig6, -325 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(UPC, 400 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig7, 1125 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig8, 1850 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig9, 2575 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig10, 3300 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig11, 4025 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig12, 4750 + posMap, 175, NULL, NULL, 0.5);
+
+
 
 	//Draw return menu
 	app->render->DrawRectangle({ 50,750,250,100 }, 255, 255, 255);
