@@ -43,6 +43,7 @@ bool Scene_StartMenu::Start()
 
 	animMenu = app->tex->Load("Assets/menuAnimation.png");
 	menu = app->tex->Load("Assets/Menu.png");
+	menuFondo = app->tex->Load("Assets/fondo_menu.png");
 
 	menuAnimation.Empty();
 	for (int j = 0; j < 8; ++j) {
@@ -167,6 +168,7 @@ bool Scene_StartMenu::PostUpdate()
 		/*app->render->DrawRectangle({ 425,500,275,100 }, 255, 255, 255);
 		//credtis
 		app->render->DrawRectangle({ 800,500,275,100 }, 255, 255, 255);*/
+		app->render->DrawTexture(menuFondo, 0, 0);
 		app->render->DrawTexture(menu, 0, 0);
 	}
 
