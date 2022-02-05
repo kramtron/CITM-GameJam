@@ -36,13 +36,10 @@ bool Scene_StartMenu::Start()
 	active = false;
 
 	playMode1 = new Button(255, 255, 275, 100);
-	playMode2 = new Button(625, 255, 275, 100);
-	options = new Button(1000, 255, 275, 100);
 	exit = new Button(425, 500, 275, 100);
 	credits = new Button(800, 500, 275, 100);
 	
 	exitCredits = new Button(175, 175, 50, 50);
-	exitSettings = new Button(175, 175, 50, 50);
 
 	animMenu = app->tex->Load("Assets/menuAnimation.png");
 
@@ -73,33 +70,40 @@ bool Scene_StartMenu::Update(float dt)
 {
 	bool ret = true;
 	app->input->GetMousePosition(mouse.x, mouse.y);
-	if (destroyCircle == false) {
+	/*if (destroyCircle == false) {
 		app->render->DrawCircle(800, 450, 400, 255, 0, 0);
-	}
+	}*/
+
 	//Vector para ver si el mouse está dentro del circulo
 	iPoint vector = iPoint((mouse.x - 800), (mouse.y - 450));
+
 	//Calcula la distancia del vector
 	distance = (vector.x * vector.x) + (vector.y * vector.y);
+
 	//En caso de estar dentro de la distancia del circulo activa el if
-	if(400*400>distance&&destroyCircle==false){
+	if(400*400>distance && menuAnimation.HasFinished() == false){
+
 		//Cuando pulsas el boton izquierdo destruyes el circulo
 		if (app->input->GetMouseButtonDown(mouse.left) == KEY_DOWN) {
 			//Aqui va la activacion de la animación de como se destruye el trencadis
 			destroyCircle = true;
 		}
-
 	}
-	if (destroyCircle) {
-		//Aquí va la animación de la destruccion del trencadis
 
+	if (destroyCircle && menuAnimation.HasFinished() == false)
+	{
+		menuAnimation.Update();
+	}
+
+	if (menuAnimation.HasFinished()) {
 		//quan acabi l'animació s'activa el menu
 		endAnimation = true;
 		if(exitCount != 0)
 		exitCount--;
 	}
-	//Se necesita un if que active el menu cuando un bool que te indique que la animación esté terminada esté en true
+
 	//A partir de ese punto se activa el menu
-	if (endAnimation == true && creditsMenu == false && settingsMenu == false)
+	if (endAnimation == true && creditsMenu == false)
 	{
 		if (playMode1->DetectColision() && exitCount == 0)
 		{
@@ -108,25 +112,6 @@ bool Scene_StartMenu::Update(float dt)
 				exitCount = 10;
 				active = false;
 				app->scene_lvl->active = true;
-			}
-		}
-
-		if (playMode2->DetectColision() && exitCount == 0)
-		{
-			if (app->input->GetMouseButtonDown(1) == KEY_UP)
-			{
-				exitCount = 10;
-
-			}
-		}
-
-		if (options->DetectColision() && exitCount == 0)
-		{
-			if (app->input->GetMouseButtonDown(1) == KEY_UP)
-			{
-				exitCount = 10;
-				endAnimation = false;
-				settingsMenu = true;
 			}
 		}
 
@@ -163,39 +148,6 @@ bool Scene_StartMenu::Update(float dt)
 		}
 	}
 
-	if (settingsMenu == true)
-	{
-		//return menu
-		if (exitSettings->DetectColision() && exitCount == 0)
-		{
-			if (app->input->GetMouseButtonDown(1) == KEY_UP)
-			{
-				exitCount = 10;
-				settingsMenu = false;
-				endAnimation = true;
-			}
-		}
-
-		//slider volumen
-		if ((mouse.x <= 1350 && mouse.x >= 425) && (mouse.y <= 300 && mouse.y >= 225) && exitCount == 0)
-		{
-			if (app->input->GetMouseButtonDown(1) == KEY_REPEAT)
-			{
-				circleVol_x = mouse.x - 33;
-			}
-		}
-
-		//slider fx
-		if ((mouse.x <= 1350 && mouse.x >= 425) && (mouse.y <= 525 && mouse.y >= 450) && exitCount == 0)
-		{
-			if (app->input->GetMouseButtonDown(1) == KEY_REPEAT)
-			{
-				circleFX_x = mouse.x - 33;
-			}
-		}
-	}
-
-	LOG("mouse x: %d,  mouse y: %d", mouse.x, mouse.y);
 	return ret;
 }
 
@@ -206,17 +158,13 @@ bool Scene_StartMenu::PostUpdate()
 
 	//Animation
 	app->render->DrawTexture(animMenu, 0, 0, &menuAnimation.GetCurrentFrame());
-	menuAnimation.Update();
+
 
 	//menu principal
-	if (menuAnimation.HasFinished())
+	if (endAnimation == true)
 	{
 		//Play1
 		app->render->DrawRectangle({255,255,275,100},255,255,255);	
-		//Play2
-		app->render->DrawRectangle({625,255,275,100},255,255,255);
-		//options
-		app->render->DrawRectangle({ 1000,255,275,100 }, 255, 255, 255);
 		//exit
 		app->render->DrawRectangle({ 425,500,275,100 }, 255, 255, 255);
 		//credtis
@@ -231,28 +179,6 @@ bool Scene_StartMenu::PostUpdate()
 		//return menu
 		app->render->DrawRectangle({ 175,175,50,50 }, 125, 125, 125);
 
-	}
-
-	//settings
-	if (settingsMenu == true)
-	{
-		//Setting fondo
-		app->render->DrawRectangle({ 100,100,1400,700 }, 255, 255, 255);
-		//return menu
-		app->render->DrawRectangle({ 175,175,50,50 }, 125, 125, 125);
-
-		//slider vol
-		app->render->DrawRectangle({ 450,250,900,25 }, 125, 125, 125);
-		//sliderBall vol
-		app->render->DrawRectangle({ circleVol_x,225,75,75 }, 125, 125, 125);
-
-		//slider fx
-		app->render->DrawRectangle({ 450,475,900,25 }, 125, 125, 125);
-		//sliderBall fx
-		app->render->DrawRectangle({ circleFX_x,450,75,75 }, 125, 125, 125);
-
-		//check fullscreen
-		app->render->DrawRectangle({ 800,650,125,125 }, 125, 125, 125);
 	}
 
 	return ret;
