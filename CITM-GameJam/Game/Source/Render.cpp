@@ -96,7 +96,7 @@ bool Render::PostUpdate()
 		screenshots_taken++;
 
 		//Image section
-		SDL_Rect r = { 200, 200, 400, 400 };
+		SDL_Rect r = { 397, 160, 820, 600 };
 		SDL_Window* window = SDL_CreateWindow(app->GetTitle(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, r.w, r.h, SDL_WINDOW_HIDDEN);
 
 		SDL_Surface* surfaces = SDL_GetWindowSurface(window);//app->win->screenSurface;

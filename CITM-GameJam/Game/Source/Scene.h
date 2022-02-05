@@ -70,7 +70,7 @@ public:
 
 	bool debug = false;
 
-	int lvl_selected = 3;
+	int lvl_selected = 1;
 };
 
 #endif // __SCENE_H__
