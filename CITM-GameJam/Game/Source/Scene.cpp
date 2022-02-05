@@ -125,9 +125,6 @@ bool Scene::Update(float dt)
 
 	//Grabbing Rajola
 	if (grabbing) {
-
-		
-
 		grabbedRajola->p.x = mp.x - grabbedRajola->grabPosition.x;
 		grabbedRajola->p.y = mp.y - grabbedRajola->grabPosition.y;
 
@@ -164,9 +161,10 @@ bool Scene::Update(float dt)
 	}
 
 	//screenshot
-	if (app->input->GetMouseButtonDown(1) && mp.x > cameraCollider.x && mp.x < (cameraCollider.x + cameraCollider.w) && 
+	if (app->input->GetMouseButtonDown(1) == KEY_DOWN && mp.x > cameraCollider.x && mp.x < (cameraCollider.x + cameraCollider.w) && 
 											 mp.y > cameraCollider.y && mp.y < (cameraCollider.y + cameraCollider.h)) {
 		app->render->screenshot = true;
+		screenshooting = 50;
 	}
 
 	return ret;
@@ -197,6 +195,17 @@ bool Scene::PostUpdate()
 
 		//Draw Camera Rectangle
 		app->render->DrawRectangle(cameraCollider, 0, 0, 255, 100);
+	}
+
+	//Screenshot Flash
+	if (screenshooting == 0)
+		app->render->screenshotCheck = true;
+	else
+		app->render->screenshotCheck = false;
+
+	if (screenshooting > 0) {
+		app->render->DrawRectangle(SDL_Rect{ 0, 0, 1600, 900}, 255, 255, 255, (150 / screenshooting) + 105);
+		screenshooting--;
 	}
 	
 	return true;

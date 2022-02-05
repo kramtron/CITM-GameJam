@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Render.h"
 #include "Input.h"
+#include "Scene.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -82,15 +83,21 @@ bool Render::PostUpdate()
 	SDL_RenderPresent(renderer);
 	
 	//SCREENSHOT
-	if (screenshot) {
+	if (screenshot && screenshotCheck) {
 		const Uint32 formats = SDL_PIXELFORMAT_ARGB8888;
 		const int widths = 640;
 		const int heights = 400;
 		auto renderers = renderer;
 
+		//name changer
+		string screenshotName = "Screenshots/screenshot";
+		screenshotName += to_string(screenshots_taken);
+		screenshotName += ".bmp";
+		screenshots_taken++;
+
 		SDL_Surface* surfaces = app->win->screenSurface;
 		SDL_RenderReadPixels(renderers, NULL, formats, surfaces->pixels, surfaces->pitch);
-		SDL_SaveBMP(surfaces, "Screenshots/screenshot.bmp");
+		SDL_SaveBMP(surfaces, screenshotName.c_str());
 		SDL_FreeSurface(surfaces);
 		screenshot = false;
 	}

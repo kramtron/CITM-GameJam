@@ -66,6 +66,7 @@ public:
 	rajola* hoveringRajola = nullptr;
 
 	SDL_Rect cameraCollider;
+	int screenshooting = 0;
 
 	bool debug = false;
 
