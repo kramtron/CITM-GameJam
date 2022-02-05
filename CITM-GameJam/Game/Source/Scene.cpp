@@ -45,6 +45,7 @@ bool Scene::Start()
 	trencadis = app->tex->Load("Assets/trencadis.png");
 	brillibrilli = app->tex->Load("Assets/brillitu.png");
 	mapa = app->tex->Load("Assets/scenemap.png");
+	instruccions = app->tex->Load("Assets/instruccions.png");
 
 	switch (lvl_selected) {
 	case 1:
@@ -96,6 +97,9 @@ bool Scene::Start()
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
+	//Restart hovering Rajola
+	hoveringRajola = nullptr;
+
 	return true;
 }
 
@@ -113,9 +117,6 @@ bool Scene::Update(float dt)
 		Enrajolar();
 		grabbing = false;
 	}
-
-	//Restart hovering Rajola
-	hoveringRajola = nullptr;
 	
 	//Grabbing Rajola
 	if (grabbing) {
@@ -160,6 +161,11 @@ bool Scene::Update(float dt)
 		}
 	}
 
+	//screenshot
+	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
+		app->render->screenshot = true;
+	}
+
 	return ret;
 }
 
@@ -171,6 +177,9 @@ bool Scene::PostUpdate()
 
 	//Draw figura
 	app->render->DrawTexture(figura, 0, 0);
+
+	//Draw Instruccions
+	app->render->DrawTexture(instruccions, 700, 820);
 
 	//Draw all present Rajoles
 	DrawRajoles();

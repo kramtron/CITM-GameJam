@@ -53,6 +53,8 @@ public:
 	SDL_Rect camera;
 	SDL_Rect viewport;
 	SDL_Color background;
+	bool screenshot = false;
+	int screenshots_taken = 0;
 };
 
 #endif // __RENDER_H__

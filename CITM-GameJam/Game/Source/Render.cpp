@@ -1,9 +1,11 @@
 #include "App.h"
 #include "Window.h"
 #include "Render.h"
+#include "Input.h"
 
 #include "Defs.h"
 #include "Log.h"
+#include <string>
 
 #define VSYNC true
 
@@ -79,7 +81,19 @@ bool Render::PostUpdate()
 	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.g, background.a);
 	SDL_RenderPresent(renderer);
 	
+	//SCREENSHOT
+	if (screenshot) {
+		const Uint32 formats = SDL_PIXELFORMAT_ARGB8888;
+		const int widths = 640;
+		const int heights = 400;
+		auto renderers = renderer;
 
+		SDL_Surface* surfaces = app->win->screenSurface;
+		SDL_RenderReadPixels(renderers, NULL, formats, surfaces->pixels, surfaces->pitch);
+		SDL_SaveBMP(surfaces, "Screenshots/screenshot.bmp");
+		SDL_FreeSurface(surfaces);
+		screenshot = false;
+	}
 
 	return true;
 }

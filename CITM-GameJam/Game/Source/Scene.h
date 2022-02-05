@@ -59,6 +59,7 @@ public:
 	SDL_Texture* brillibrilli = nullptr;
 	SDL_Texture* mapa = nullptr;
 	SDL_Texture* figura = nullptr;
+	SDL_Texture* instruccions = nullptr;
 
 	bool grabbing = false;
 	rajola* grabbedRajola = nullptr;
