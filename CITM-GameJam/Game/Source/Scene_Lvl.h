@@ -61,6 +61,8 @@ public:
 	SDL_Texture* fig11 = nullptr;
 	SDL_Texture* fig12 = nullptr;
 
+	SDL_Texture* fondo = nullptr;
+
 
 private:
 

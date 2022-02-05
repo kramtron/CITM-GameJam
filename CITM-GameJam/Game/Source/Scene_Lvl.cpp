@@ -53,6 +53,8 @@ bool Scene_Lvl::Start()
 	fig11 = app->tex->Load("Assets/fig11.png");
 	fig12 = app->tex->Load("Assets/fig12.png");
 
+	fondo = app->tex->Load("Assets/mapselect.png");
+
 
 	return true;
 }
@@ -116,7 +118,6 @@ bool Scene_Lvl::Update(float dt)
 	}
 
 	
-
 	if (posMap >= -4749 && posMap <= -4025)
 		selectMap = 1;
 	else if (posMap >= -4024 && posMap <= -3300)
@@ -144,7 +145,6 @@ bool Scene_Lvl::Update(float dt)
 	else if (posMap >= 3951 && posMap <= 4675)
 		selectMap = 13;
 
-	LOG("Map: %d", selectMap);
 	return ret;
 }
 
@@ -154,8 +154,10 @@ bool Scene_Lvl::PostUpdate()
 	bool ret = true;
 
 	//Draw Map selected
-	app->render->DrawRectangle({ 500,205,600,390 }, 255, 255, 255);
-	app->render->DrawRectangle({ 505,210,590,380 }, 0, 0, 0);
+	app->render->DrawTexture(fondo, 0, 0);
+
+	//app->render->DrawRectangle({ 500,205,600,390 }, 255, 255, 255);
+	//app->render->DrawRectangle({ 505,210,590,380 }, 0, 0, 0);
 
 	//Draw Maps
 	/*app->render->DrawRectangle({ -3825 + posMap,225,550,350 }, 255, 255, 255);
@@ -172,27 +174,27 @@ bool Scene_Lvl::PostUpdate()
 	app->render->DrawRectangle({ 4150 + posMap,225,550,350 }, 255, 255, 255);
 	app->render->DrawRectangle({ 4875 + posMap,225,550,350 }, 255, 255, 255);*/
 
-	app->render->DrawTexture(fig1, -3950 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig2, -3225 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig3, -2500 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig4, -1775 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig5, -1050 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig6, -325 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(UPC, 400 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig7, 1125 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig8, 1850 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig9, 2575 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig10, 3300 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig11, 4025 + posMap, 175, NULL, NULL, 0.5);
-	app->render->DrawTexture(fig12, 4750 + posMap, 175, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig1, -3950 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig2, -3225 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig3, -2500 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig4, -1775 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig5, -1050 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig6, -325 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(UPC, 400 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig7, 1125 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig8, 1850 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig9, 2575 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig10, 3300 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig11, 4025 + posMap, 200, NULL, NULL, 0.5);
+	app->render->DrawTexture(fig12, 4750 + posMap, 200, NULL, NULL, 0.5);
 
 
 
 	//Draw return menu
-	app->render->DrawRectangle({ 50,750,250,100 }, 255, 255, 255);
+	//app->render->DrawRectangle({ 50,750,250,100 }, 255, 255, 255);
 
 	//Draw Play
-	app->render->DrawRectangle({ 1300,750,250,100 }, 255, 255, 255);
+	//app->render->DrawRectangle({ 1300,750,250,100 }, 255, 255, 255);
 	
 
 	return ret;
