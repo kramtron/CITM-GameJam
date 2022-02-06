@@ -35,6 +35,7 @@ bool Scene_Logo::Awake()
 bool Scene_Logo::Start()
 {
 	intro = app->tex->Load("Assets/IntroAnimation.png");
+	app->audio->PlayMusic("Assets/Audio/backgroundMusic.ogg");
 
 	introAnimation.Empty();
 	for (int j = 0; j < 3; ++j) {

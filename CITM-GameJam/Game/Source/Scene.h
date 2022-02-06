@@ -11,6 +11,30 @@ using namespace std;
 
 struct SDL_Texture;
 
+class ButtonScene {
+public:
+	int x, y, w, h;
+
+	ButtonScene() {
+		x = y = w = h = 0;
+	}
+
+	ButtonScene(int x, int y, int w, int h) {
+		this->x = x;
+		this->y = y;
+		this->w = w;
+		this->h = h;
+	}
+
+public:
+	bool DetectColision() {
+		int mx, my;
+		app->input->GetMousePosition(mx, my);
+		return (mx > x && mx < (x + w) && my > y && my < (y + h));
+	}
+
+};
+
 class Scene : public Module
 {
 public:
@@ -56,6 +80,7 @@ public:
 	SDL_Texture* mapa = nullptr;
 	SDL_Texture* figura = nullptr;
 	SDL_Texture* instruccions = nullptr;
+	SDL_Texture* exitgame = nullptr;
 
 	bool grabbing = false;
 	rajola* grabbedRajola = nullptr;
@@ -73,6 +98,9 @@ public:
 	int wheelResetTimer = 0;
 
 	int lvl_selected = 1;
+
+	ButtonScene* returnMenu = nullptr;
+
 };
 
 #endif // __SCENE_H__
