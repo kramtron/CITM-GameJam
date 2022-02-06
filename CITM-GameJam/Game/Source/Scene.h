@@ -9,8 +9,6 @@
 #include <chrono>
 using namespace std;
 
-#define MOUSE_WHEEL_SENSITIVITY 7
-
 struct SDL_Texture;
 
 class Scene : public Module
@@ -70,6 +68,9 @@ public:
 	uint cameraFx;
 
 	bool debug = false;
+
+	int wheelSensitivity = 3;
+	int wheelResetTimer = 0;
 
 	int lvl_selected = 1;
 };

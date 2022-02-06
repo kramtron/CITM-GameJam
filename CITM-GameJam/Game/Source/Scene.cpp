@@ -140,7 +140,19 @@ bool Scene::Update(float dt)
 			app->audio->PlayFx(pieceFx);
 		}
 
-		grabbedRajola->a += app->input->GetMouseWheelMotion() * MOUSE_WHEEL_SENSITIVITY;
+		//Mouse Wheel sensitivity escalation
+		grabbedRajola->a += app->input->GetMouseWheelMotion() * wheelSensitivity;
+		if (app->input->GetMouseWheelMotion() != 0) {
+			wheelSensitivity++;
+		}
+
+		if (wheelResetTimer <= 0) {
+			wheelSensitivity = 3;
+			wheelResetTimer = 500;
+		}
+		else {
+			wheelResetTimer--;
+		}
 	}
 	//Not grabbing Rajola
 	else {
