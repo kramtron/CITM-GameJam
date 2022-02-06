@@ -47,7 +47,6 @@ bool Scene::Start()
 	pieceFx = app->audio->LoadFx("Assets/Audio/woodClick.wav");
 	refreshFx = app->audio->LoadFx("Assets/Audio/pieceRefresh.wav");
 
-	app->audio->PlayMusic("Assets/Audio/backgroundMusic.ogg");
 
 
 	//Load Images
@@ -55,6 +54,7 @@ bool Scene::Start()
 	brillibrilli = app->tex->Load("Assets/brillitu.png");
 	mapa = app->tex->Load("Assets/scenemap.png");
 	instruccions = app->tex->Load("Assets/instruccions.png");
+	exitgame = app->tex->Load("Assets/exit.png");
 
 	switch (lvl_selected) {
 	case 1:
@@ -101,6 +101,8 @@ bool Scene::Start()
 	Enrajolar();
 
 	cameraCollider = { 750, 700, 100, 80 };
+
+	returnMenu = new ButtonScene(75, 825, 200, 50);
 
 	return true;
 }
@@ -234,6 +236,9 @@ bool Scene::PostUpdate()
 		screenshooting--;
 	}
 	
+	app->render->DrawTexture(exitgame,-100,400,NULL,NULL,0.6);
+	app->render->DrawRectangle({ 75,825,200,50 }, 255, 255, 255);
+
 	return true;
 }
 
