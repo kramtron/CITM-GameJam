@@ -33,7 +33,7 @@ public:
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
 	float volume_mix_max_wav = 128;
-	float volume_mix_max_music = 10;
+	float volume_mix_max_music = 15;
 
 private:
 

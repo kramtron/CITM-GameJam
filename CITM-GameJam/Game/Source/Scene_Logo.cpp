@@ -38,13 +38,13 @@ bool Scene_Logo::Start()
 	app->audio->PlayMusic("Assets/Audio/backgroundMusic.ogg");
 
 	introAnimation.Empty();
-	for (int j = 0; j < 3; ++j) {
-		for (int i = 0; i < 8; ++i) {
+	for (int j = 0; j < 2; ++j) {
+		for (int i = 0; i < 5; ++i) {
 			introAnimation.PushBack({ i * 1600, j * 900, 1600, 900 });
 		}
 	}
 	
-	introAnimation.speed = 0.005f;
+	introAnimation.speed = 0.003f;
 	introAnimation.loop = false;
 
 	return true;

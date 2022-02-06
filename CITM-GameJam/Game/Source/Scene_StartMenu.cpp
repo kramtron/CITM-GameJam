@@ -41,17 +41,17 @@ bool Scene_StartMenu::Start()
 	
 	exitCredits = new Button(175, 175, 50, 50);
 
-	animMenu = app->tex->Load("Assets/menuAnimation2.png");
+	animMenu = app->tex->Load("Assets/menuAnimation.png");
 	menu = app->tex->Load("Assets/Menu.png");
 	menuFondo = app->tex->Load("Assets/fondo_menu.png");
 
 	menuAnimation.Empty();
-	for (int j = 0; j < 6; ++j) {
-		for (int i = 0; i < 8; ++i) {
+	for (int j = 0; j < 2; ++j) {
+		for (int i = 0; i < 5; ++i) {
 			menuAnimation.PushBack({ i * 1600, j * 900, 1600, 900 });
 		}
 	}
-	menuAnimation.speed = 0.005f;
+	menuAnimation.speed = 0.003f;
 	menuAnimation.loop = false;
 
 
