@@ -55,6 +55,7 @@ bool Scene::Start()
 	mapa = app->tex->Load("Assets/scenemap.png");
 	instruccions = app->tex->Load("Assets/instruccions.png");
 	exitgame = app->tex->Load("Assets/exit.png");
+	returnmenu = app->tex->Load("Assets/returnmenu.png");
 
 	switch (lvl_selected) {
 	case 1:
@@ -102,7 +103,8 @@ bool Scene::Start()
 
 	cameraCollider = { 750, 700, 100, 80 };
 
-	returnMenu = new ButtonScene(75, 825, 200, 50);
+	extigame = new ButtonScene(240, 825, 105, 50);
+	returnMenu = new ButtonScene(35, 825, 130, 50);
 
 	return true;
 }
@@ -193,6 +195,24 @@ bool Scene::Update(float dt)
 		app->audio->PlayFx(cameraFx);
 	}
 
+
+	if (extigame->DetectColision())
+	{
+		if (app->input->GetMouseButtonDown(1))
+		{
+			ret = false;
+		}
+	}
+
+	if (returnMenu->DetectColision())
+	{
+		if (app->input->GetMouseButtonDown(1))
+		{
+			active = false;
+			app->scene_startmenu->active = true;
+		}
+	}
+
 	return ret;
 }
 
@@ -236,8 +256,10 @@ bool Scene::PostUpdate()
 		screenshooting--;
 	}
 	
-	app->render->DrawTexture(exitgame,-100,400,NULL,NULL,0.6);
-	app->render->DrawRectangle({ 75,825,200,50 }, 255, 255, 255);
+	//app->render->DrawRectangle({ 240,825,105,50 }, 255, 255, 255);
+	//app->render->DrawRectangle({ 35,825,130,50 }, 255, 255, 255);
+	app->render->DrawTexture(exitgame, -50, 550, NULL, NULL, 0.6);
+	app->render->DrawTexture(returnmenu, 0, 190, NULL, NULL, 0.8);
 
 	return true;
 }

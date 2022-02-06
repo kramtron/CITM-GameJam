@@ -81,6 +81,7 @@ public:
 	SDL_Texture* figura = nullptr;
 	SDL_Texture* instruccions = nullptr;
 	SDL_Texture* exitgame = nullptr;
+	SDL_Texture* returnmenu = nullptr;
 
 	bool grabbing = false;
 	rajola* grabbedRajola = nullptr;
@@ -99,6 +100,7 @@ public:
 
 	int lvl_selected = 1;
 
+	ButtonScene* extigame = nullptr;
 	ButtonScene* returnMenu = nullptr;
 
 };
