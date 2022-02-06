@@ -69,6 +69,11 @@ public:
 	int mouseX;
 	int mouseY;
 
+
+	bool LoadGameConfig(pugi::xml_node&);
+	bool SaveGameConfig(pugi::xml_node&) const;
+
+
 private:
 	bool windowEvents[WE_COUNT];
 	KeyState*	keyboard;
