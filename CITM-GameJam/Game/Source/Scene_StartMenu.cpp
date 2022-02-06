@@ -39,11 +39,12 @@ bool Scene_StartMenu::Start()
 	exit = new Button(700, 550, 200, 75);
 	credits = new Button(700, 650, 200, 60);
 	
-	exitCredits = new Button(175, 175, 50, 50);
+	exitCredits = new Button(735, 650, 130, 50);
 
 	animMenu = app->tex->Load("Assets/menuAnimation.png");
 	menu = app->tex->Load("Assets/Menu.png");
 	menuFondo = app->tex->Load("Assets/fondo_menu.png");
+	returnmenu = app->tex->Load("Assets/returnmenu.png");
 
 	menuAnimation.Empty();
 	for (int j = 0; j < 2; ++j) {
@@ -161,7 +162,7 @@ bool Scene_StartMenu::PostUpdate()
 	}
 	app->render->DrawTexture(animMenu, 0, 0, &menuAnimation.GetCurrentFrame());
 	//menu principal
-	if (endAnimation == true)
+	if (endAnimation && !creditsMenu)
 	{
 
 		//Play1
@@ -170,18 +171,18 @@ bool Scene_StartMenu::PostUpdate()
 		/*app->render->DrawRectangle({ 425,500,275,100 }, 255, 255, 255);
 		//credtis
 		app->render->DrawRectangle({ 800,500,275,100 }, 255, 255, 255);*/
+	
 		app->render->DrawTexture(menuFondo, 0, 0);
 		app->render->DrawTexture(menu, 0, 0);
 	}
 
 	//credits
-	if (creditsMenu == true)
+	if (creditsMenu)
 	{
-		//Menu Fondo
-		app->render->DrawRectangle({ 100,100,1400,700 }, 255, 255, 255);
+		//app->render->DrawRectangle({ 735,650,130,50 }, 125, 125, 125);
+		
 		//return menu
-		app->render->DrawRectangle({ 175,175,50,50 }, 125, 125, 125);
-
+		app->render->DrawTexture(returnmenu, 700, 15, NULL, 1.0f, 0.8);
 	}
 
 	return ret;

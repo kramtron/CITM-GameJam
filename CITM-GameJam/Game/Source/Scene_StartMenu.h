@@ -87,6 +87,7 @@ private:
 	SDL_Texture* animMenu = nullptr;
 	SDL_Texture* menu = nullptr;
 	SDL_Texture* menuFondo = nullptr;
+	SDL_Texture* returnmenu = nullptr;
 };
 
 
