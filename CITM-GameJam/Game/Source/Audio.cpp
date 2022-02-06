@@ -109,6 +109,7 @@ bool Audio::PlayMusic(const char* path, float fade_time)
 	}
 
 	music = Mix_LoadMUS(path);
+	Mix_VolumeMusic(volume_mix_max_music);
 
 	if(music == NULL)
 	{
