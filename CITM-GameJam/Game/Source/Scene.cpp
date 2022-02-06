@@ -47,6 +47,9 @@ bool Scene::Start()
 	pieceFx = app->audio->LoadFx("Assets/Audio/woodClick.wav");
 	refreshFx = app->audio->LoadFx("Assets/Audio/pieceRefresh.wav");
 
+	app->audio->PlayMusic("Assets/Audio/backgroundMusic.ogg");
+
+
 	//Load Images
 	trencadis = app->tex->Load("Assets/trencadis.png");
 	brillibrilli = app->tex->Load("Assets/brillitu.png");
