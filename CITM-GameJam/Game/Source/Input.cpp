@@ -176,6 +176,16 @@ bool Input::PreUpdate()
 		app->scene_lvl->active = false;
 		app->scene->active = true;
 	}
+	if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN) {
+		app->win->fullscreen = !app->win->fullscreen;
+		app->SaveGameRequest();
+		if (app->win->fullscreen == true) {
+			SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
+		}
+		else {
+			SDL_SetWindowFullscreen(app->win->window, 0);
+		}
+	}
 
 
 	return true;
@@ -209,4 +219,22 @@ void Input::GetMouseMotion(int& x, int& y)
 
 int Input::GetMouseWheelMotion() {
 	return mouseWheel;
+}
+
+bool Input::LoadGameConfig(pugi::xml_node& configScreen) {
+
+	//Screen Load
+	app->win->fullscreen = configScreen.child("fullscreen").attribute("value").as_bool();
+
+	return true;
+}
+
+bool Input::SaveGameConfig(pugi::xml_node& configScreen) const {
+
+	//Screen Save
+	pugi::xml_node screenConfig = configScreen;
+	configScreen.child("fullscreen").attribute("value").set_value(app->win->fullscreen);
+	
+	
+	return true;
 }

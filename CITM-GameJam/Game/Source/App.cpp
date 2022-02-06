@@ -331,11 +331,13 @@ void App::SaveGameRequest() const
 bool App::LoadGame()
 {
 	bool ret = false;
+	loadConfig = LoadConfig(configFile2);
 
-	
+	if (loadConfig.empty() == false) {
+		configScreen = loadConfig.child("window");
+		app->input->LoadGameConfig(configScreen);
+	}
 
-	
-	
 	loadGameRequested = false;
 
 
@@ -346,8 +348,12 @@ bool App::LoadGame()
 bool App::SaveGame() 
 {
 	bool ret = true;
+	loadConfig = LoadConfig(configFile2);
 
-	
+	if (loadConfig.empty() == false) {
+		app->input->SaveGameConfig(configScreen);
+		configFile2.save_file(CONFIG_FILENAME);
+	}
 
 	
 	saveGameRequested = false;

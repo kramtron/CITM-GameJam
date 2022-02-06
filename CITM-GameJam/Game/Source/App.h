@@ -121,6 +121,8 @@ private:
 	pugi::xml_document configFile2;
 	pugi::xml_node config;
 	
+	pugi::xml_node loadConfig;
+	pugi::xml_node configScreen;
 
 
 	pugi::xml_document configSaveGame;
