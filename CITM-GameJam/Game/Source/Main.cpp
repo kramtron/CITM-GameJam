@@ -133,7 +133,7 @@ int main(int argc, char* args[])
 		//Check en salida de la diferencia de temps
 		//LOG("Elapsed time in milliseconds: %d", chrono::duration_cast<chrono::milliseconds>(end - start).count(), " ms");
 		telapsed = chrono::duration_cast<chrono::milliseconds>(end - start).count();
- 		LOG("dt: %f", delta_time);
+ 		//LOG("dt: %f", delta_time);
 		//Entra si hay diferencia de tiempo
 		if (delta_time - telapsed > 0.0f) {
 			//Para el programa el tiempo restante

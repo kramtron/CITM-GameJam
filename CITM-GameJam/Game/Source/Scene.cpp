@@ -45,6 +45,7 @@ bool Scene::Start()
 	//Load Audio
 	cameraFx = app->audio->LoadFx("Assets/Audio/cameraFlash.wav");
 	pieceFx = app->audio->LoadFx("Assets/Audio/woodClick.wav");
+	refreshFx = app->audio->LoadFx("Assets/Audio/pieceRefresh.wav");
 
 	//Load Images
 	trencadis = app->tex->Load("Assets/trencadis.png");
@@ -120,6 +121,7 @@ bool Scene::Update(float dt)
 	
 	//Refresh Rajoles
 	if (app->input->GetMouseButtonDown(3) == KEY_DOWN) {
+		app->audio->PlayFx(refreshFx);
 		ClearRajoles();
 		Enrajolar();
 		grabbing = false;

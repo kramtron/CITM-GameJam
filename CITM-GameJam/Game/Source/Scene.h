@@ -9,10 +9,7 @@
 #include <chrono>
 using namespace std;
 
-#define MOUSE_WHEEL_SENSITIVITY 5
-
-using namespace std;
-
+#define MOUSE_WHEEL_SENSITIVITY 7
 
 struct SDL_Texture;
 
@@ -66,6 +63,7 @@ public:
 	rajola* grabbedRajola = nullptr;
 	rajola* hoveringRajola = nullptr;
 	uint pieceFx;
+	uint refreshFx;
 
 	SDL_Rect cameraCollider;
 	int screenshooting = 0;
