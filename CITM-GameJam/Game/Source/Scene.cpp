@@ -55,6 +55,35 @@ bool Scene::Start()
 	exitgame = app->tex->Load("Assets/exit.png");
 	returnmenu = app->tex->Load("Assets/returnmenu.png");
 	cameraTex = app->tex->Load("Assets/camera.png");
+	
+	/*
+	if(lvl_selected == 1)
+		figura = app->tex->Load("Assets/fig1.png");
+	else if(lvl_selected == 2)
+		figura = app->tex->Load("Assets/fig2.png");
+	else if (lvl_selected == 3)
+		figura = app->tex->Load("Assets/fig3.png");
+	else if (lvl_selected == 4)
+		figura = app->tex->Load("Assets/fig4.png");
+	else if (lvl_selected == 5)
+		figura = app->tex->Load("Assets/fig5.png");
+	else if (lvl_selected == 6)
+		figura = app->tex->Load("Assets/fig6.png");
+	else if (lvl_selected == 7)
+		figura = app->tex->Load("Assets/fig7.png");
+	else if (lvl_selected == 8)
+		figura = app->tex->Load("Assets/fig8.png");
+	else if (lvl_selected == 9)
+		figura = app->tex->Load("Assets/fig9.png");
+	else if (lvl_selected == 10)
+		figura = app->tex->Load("Assets/fig10.png");
+	else if (lvl_selected == 11)
+		figura = app->tex->Load("Assets/fig11.png");
+	else if (lvl_selected == 12)
+		figura = app->tex->Load("Assets/fig12.png");
+	else
+		figura = app->tex->Load("Assets/fig0.png");
+		*/
 
 	switch (lvl_selected) {
 	case 1:
@@ -273,7 +302,7 @@ bool Scene::CleanUp()
 
 	//Need to clean up Rajoles list
 	Rajoles.clear();
-
+	/*
 	trencadis = nullptr;
 	brillibrilli = nullptr;
 	mapa = nullptr;
@@ -281,6 +310,13 @@ bool Scene::CleanUp()
 	instruccions = nullptr;
 	grabbedRajola = nullptr;
 	hoveringRajola = nullptr;
+	exitgame = nullptr;
+	returnmenu = nullptr;
+	grabbing = false;
+	cameraTex = nullptr;
+
+	extigame = nullptr;
+	returnMenu = nullptr;*/
 
 	return true;
 }

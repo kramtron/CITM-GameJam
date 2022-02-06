@@ -39,10 +39,10 @@ public:
 	}mouse;
 
 	int posOnClick;
-	int posMap;
+	int posMap = 0;
 	int goodPosMap;
 
-	int selectMap;
+	int selectMap = 1;
 
 	Button* butt1 = nullptr;
 	Button* butt2 = nullptr;
