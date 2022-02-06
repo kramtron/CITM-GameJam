@@ -1,7 +1,7 @@
 # TrenCat
 
 #PinkMoon Studio
-Art - Alèxia
+Art - Alèxia Garcia Carreño
 Programming/Art - Gerard Ramon Catasús
 Programming - Biel Rabasa Galan
 Programming - Roger Salas Bernadó
