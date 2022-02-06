@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Rajola.h"
+#include "Audio.h"
 #include "p2List.h"
 #include <chrono>
 using namespace std;
@@ -64,9 +65,11 @@ public:
 	bool grabbing = false;
 	rajola* grabbedRajola = nullptr;
 	rajola* hoveringRajola = nullptr;
+	uint pieceFx;
 
 	SDL_Rect cameraCollider;
 	int screenshooting = 0;
+	uint cameraFx;
 
 	bool debug = false;
 

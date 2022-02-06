@@ -42,6 +42,11 @@ bool Scene::Start()
 
 	active = false;
 
+	//Load Audio
+	cameraFx = app->audio->LoadFx("Assets/Audio/cameraFlash.wav");
+	pieceFx = app->audio->LoadFx("Assets/Audio/woodClick.wav");
+
+	//Load Images
 	trencadis = app->tex->Load("Assets/trencadis.png");
 	brillibrilli = app->tex->Load("Assets/brillitu.png");
 	mapa = app->tex->Load("Assets/scenemap.png");
@@ -130,6 +135,7 @@ bool Scene::Update(float dt)
 
 		if (app->input->GetMouseButtonDown(1) == KEY_DOWN) {
 			grabbing = false;
+			app->audio->PlayFx(pieceFx);
 		}
 
 		grabbedRajola->a += app->input->GetMouseWheelMotion() * MOUSE_WHEEL_SENSITIVITY;
@@ -165,6 +171,7 @@ bool Scene::Update(float dt)
 											 mp.y > cameraCollider.y && mp.y < (cameraCollider.y + cameraCollider.h)) {
 		app->render->screenshot = true;
 		screenshooting = 50;
+		app->audio->PlayFx(cameraFx);
 	}
 
 	return ret;
