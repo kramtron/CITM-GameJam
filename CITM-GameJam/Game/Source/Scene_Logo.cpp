@@ -44,7 +44,7 @@ bool Scene_Logo::Start()
 		}
 	}
 	
-	introAnimation.speed = 0.005f;
+	introAnimation.speed = 0.003f;
 	introAnimation.loop = false;
 
 	return true;
