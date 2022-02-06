@@ -99,7 +99,7 @@ bool Scene::Start()
 	
 	Enrajolar();
 
-	cameraCollider = { 750, 700, 100, 80 };
+	cameraCollider = { 1010, 20, 100, 80 };
 
 	extigame = new ButtonScene(240, 825, 105, 50);
 	returnMenu = new ButtonScene(35, 825, 130, 50);
