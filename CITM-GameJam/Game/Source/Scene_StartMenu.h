@@ -88,6 +88,7 @@ private:
 	SDL_Texture* menu = nullptr;
 	SDL_Texture* menuFondo = nullptr;
 	SDL_Texture* returnmenu = nullptr;
+	SDL_Texture* creditsTex = nullptr;
 };
 
 

@@ -54,6 +54,7 @@ bool Scene::Start()
 	instruccions = app->tex->Load("Assets/instruccions.png");
 	exitgame = app->tex->Load("Assets/exit.png");
 	returnmenu = app->tex->Load("Assets/returnmenu.png");
+	cameraTex = app->tex->Load("Assets/camera.png");
 
 	switch (lvl_selected) {
 	case 1:
@@ -241,7 +242,10 @@ bool Scene::PostUpdate()
 		app->render->DrawRectangle(cameraCollider, 0, 0, 255, 100);
 	}
 
-	//app->render->DrawRectangle(SDL_Rect{397, 160, 820, 600}, 0, 200, 0, 100);
+	app->render->DrawTexture(cameraTex, 1010, 20);
+	
+	if(app->render->screenshot)
+		app->render->DrawTexture(brillibrilli, 995, 5);
 
 	//Screenshot Flash
 	if (screenshooting == 0)

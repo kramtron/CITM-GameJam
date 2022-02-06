@@ -92,6 +92,7 @@ public:
 	SDL_Rect cameraCollider;
 	int screenshooting = 0;
 	uint cameraFx;
+	SDL_Texture* cameraTex = nullptr;
 
 	bool debug = false;
 

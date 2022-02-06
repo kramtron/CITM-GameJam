@@ -45,6 +45,7 @@ bool Scene_StartMenu::Start()
 	menu = app->tex->Load("Assets/Menu.png");
 	menuFondo = app->tex->Load("Assets/fondo_menu.png");
 	returnmenu = app->tex->Load("Assets/returnmenu.png");
+	creditsTex = app->tex->Load("Assets/credits.png");
 
 	menuAnimation.Empty();
 	for (int j = 0; j < 2; ++j) {
@@ -183,6 +184,7 @@ bool Scene_StartMenu::PostUpdate()
 		
 		//return menu
 		app->render->DrawTexture(returnmenu, 700, 15, NULL, 1.0f, 0.8);
+		app->render->DrawTexture(creditsTex, 0, 0);
 	}
 
 	return ret;
