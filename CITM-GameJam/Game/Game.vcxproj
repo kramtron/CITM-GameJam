@@ -102,6 +102,7 @@
     <ClCompile Include="Source\Scene_Win.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\Window.cpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\DynArray.h" />
     <ClInclude Include="Source\PQueue.h" />
@@ -128,6 +129,13 @@
     <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\Desktop\ICONA.ico" />
+    <Image Include="Assets\ICONA.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

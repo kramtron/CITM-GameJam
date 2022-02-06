@@ -151,8 +151,8 @@ bool Scene::Update(float dt)
 {
 	bool ret = true;
 	
-	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
-		debug = !debug;
+	/*if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		debug = !debug;*/
 	
 	//Refresh Rajoles
 	if (app->input->GetMouseButtonDown(3) == KEY_DOWN) {
